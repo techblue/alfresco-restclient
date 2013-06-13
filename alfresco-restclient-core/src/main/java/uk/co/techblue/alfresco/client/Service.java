@@ -9,7 +9,6 @@ import org.jboss.resteasy.client.ClientResponseFailure;
 import org.jboss.resteasy.client.ProxyFactory;
 import org.jboss.resteasy.logging.Logger;
 
-import uk.co.techblue.alfresco.dto.Credentials;
 import uk.co.techblue.alfresco.dto.error.ErrorResponse;
 import uk.co.techblue.alfresco.exception.AlfrescoServiceException;
 
@@ -23,10 +22,7 @@ public abstract class Service<RT extends Resource> {
 	/** The resource proxy. */
 	protected final RT resourceProxy;
 
-	protected final Credentials credentials;
-
-	public Service(final String restBaseUri, final Credentials credentials) {
-		this.credentials = credentials;
+	public Service(final String restBaseUri) {
 		this.restBaseUri = restBaseUri;
 		this.resourceProxy = getResourceProxy(getResourceClass(), restBaseUri);
 	}

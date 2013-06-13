@@ -19,23 +19,32 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
 
+import org.apache.commons.lang3.StringUtils;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.DeserializationContext;
 import org.codehaus.jackson.map.JsonDeserializer;
 
+import uk.co.techblue.alfresco.dto.Timestamp;
 import uk.co.techblue.alfresco.dto.util.AlfrescoDtoUtil;
 
 public class ISO8601DateDeserializer extends JsonDeserializer<Date> {
 
-    @Override
-    public Date deserialize(JsonParser jsonparser, DeserializationContext deserializationcontext)
-            throws IOException, JsonProcessingException {
-        String dateString = jsonparser.getText();
-        try {
-            return AlfrescoDtoUtil.parseISO8601Date(dateString);
-        } catch (ParseException pe) {
-            throw new IOException("Error occurred while parsing date '" + dateString + "'", pe);
-        }
-    }
+	@Override
+	public Date deserialize(JsonParser jsonparser,
+			DeserializationContext deserializationcontext) throws IOException,
+			JsonProcessingException {
+		Timestamp timestamp = jsonparser.readValueAs(Timestamp.class);
+		if (timestamp == null || StringUtils.isBlank(timestamp.getIso8601())) {
+			return null;
+		}
+		String dateString = timestamp.getIso8601();
+		try {
+			return AlfrescoDtoUtil.parseISO8601Date(dateString);
+		} catch (ParseException pe) {
+			throw new IOException("Error occurred while parsing date '"
+					+ dateString + "'", pe);
+		}
+	}
+
 }

@@ -11,8 +11,11 @@ import uk.co.techblue.alfresco.resource.AuthResource;
 
 public class AuthService extends Service<AuthResource> {
 
+	protected final Credentials credentials;
+	
 	public AuthService(String restBaseUri, Credentials credentials) {
-		super(restBaseUri, credentials);
+		super(restBaseUri);
+		this.credentials = credentials;
 	}
 
 	@Override

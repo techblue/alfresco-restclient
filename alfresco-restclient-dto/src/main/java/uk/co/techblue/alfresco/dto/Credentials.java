@@ -26,5 +26,7 @@ public class Credentials extends BaseDto {
 	public String getPassword() {
 		return password;
 	}
+	
+	
     
 }
