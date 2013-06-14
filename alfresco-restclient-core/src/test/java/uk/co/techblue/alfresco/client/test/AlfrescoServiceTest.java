@@ -2,9 +2,12 @@ package uk.co.techblue.alfresco.client.test;
 
 import uk.co.techblue.alfresco.dto.AuthResponse;
 import uk.co.techblue.alfresco.dto.Credentials;
+import uk.co.techblue.alfresco.dto.user.GroupQuery;
 import uk.co.techblue.alfresco.exception.AuthenticationException;
+import uk.co.techblue.alfresco.exception.GroupException;
 import uk.co.techblue.alfresco.exception.UserException;
 import uk.co.techblue.alfresco.service.AuthService;
+import uk.co.techblue.alfresco.service.GroupService;
 import uk.co.techblue.alfresco.service.UserService;
 
 public class AlfrescoServiceTest {
@@ -15,9 +18,30 @@ public class AlfrescoServiceTest {
 	public static void main(String[] args) {
 //		testLogin(getCredentials());
 //		testGetUsers();
-		testGetUser();
+//		testGetUser();
+//		testGetGroups();
+		testGetGroup();
 	}
 
+	private static void testGetGroup() {
+		GroupService userService = new GroupService(BASE_URL, AUTH_TICKET);
+		try {
+			System.out.println(userService.getGroup("ALFRESCO_ADMINISTRATORS"));
+		} catch (GroupException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private static void testGetGroups() {
+		GroupService userService = new GroupService(BASE_URL, AUTH_TICKET);
+		try {
+			GroupQuery groupQuery = new GroupQuery();
+			System.out.println(userService.getGroups(groupQuery));
+		} catch (GroupException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private static void testGetUser() {
 		UserService userService = new UserService(BASE_URL, AUTH_TICKET);
 		try {
