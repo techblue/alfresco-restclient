@@ -115,7 +115,7 @@ public class User extends BaseDto {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-
+	
 	public boolean isEnabled() {
 		return enabled;
 	}

@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.jboss.resteasy.client.ClientResponse;
 
+import uk.co.techblue.alfresco.dto.user.AuthorityQuery;
 import uk.co.techblue.alfresco.dto.user.Group;
 import uk.co.techblue.alfresco.dto.user.GroupQuery;
 import uk.co.techblue.alfresco.dto.user.SearchGroupResponse;
@@ -22,16 +23,49 @@ public class GroupService extends AbstractService<GroupResource> {
 		return GroupResource.class;
 	}
 
-	public SearchGroupResponse getGroups(GroupQuery groupQuery) throws GroupException {
-		ClientResponse<SearchGroupResponse> userResponse = resourceProxy.getGroups(
-				authTicket, groupQuery);
-		return parseEntityFromResponse(userResponse, GroupException.class);
+	public SearchGroupResponse getGroups(GroupQuery groupQuery)
+			throws GroupException {
+		ClientResponse<SearchGroupResponse> groupResponse = resourceProxy
+				.getGroups(authTicket, groupQuery);
+		return parseEntityFromResponse(groupResponse, GroupException.class);
 	}
 
-	public Group getGroup(String shortName) throws GroupException {
-		ClientResponse<Map<String,Group>> userResponse = resourceProxy.getGroup(
-				authTicket, shortName);
-		return parseEntityFromResponse(userResponse, GroupException.class).get("data");
+	public Group getGroup(String groupShortName) throws GroupException {
+		ClientResponse<Map<String, Group>> groupResponse = resourceProxy
+				.getGroup(authTicket, groupShortName);
+		return parseEntityFromResponse(groupResponse, GroupException.class)
+				.get("data");
 	}
 
+	public SearchGroupResponse getRootGroups(GroupQuery groupQuery)
+			throws GroupException {
+		ClientResponse<SearchGroupResponse> groupResponse = resourceProxy
+				.getRootGroups(authTicket, groupQuery);
+		return parseEntityFromResponse(groupResponse, GroupException.class);
+	}
+
+	public SearchGroupResponse getChildAuthorities(String groupShortName,
+			AuthorityQuery authorityQuery) throws GroupException {
+		ClientResponse<SearchGroupResponse> groupResponse = resourceProxy
+				.getChildAuthorities(authTicket, groupShortName, authorityQuery);
+		return parseEntityFromResponse(groupResponse, GroupException.class);
+	}
+
+	public SearchGroupResponse getParentAuthorities(String groupShortName,
+			AuthorityQuery authorityQuery) throws GroupException {
+		ClientResponse<SearchGroupResponse> groupResponse = resourceProxy
+				.getParentAuthorities(authTicket, groupShortName,
+						authorityQuery);
+		return parseEntityFromResponse(groupResponse, GroupException.class);
+	}
+
+	public void deleteGroup(String groupShortName) throws GroupException {
+		ClientResponse<String> groupResponse = resourceProxy.deleteGroup(
+				authTicket, groupShortName);
+		try {
+			validateResponseSuccess(groupResponse, GroupException.class);
+		} finally {
+			groupResponse.releaseConnection();
+		}
+	}
 }

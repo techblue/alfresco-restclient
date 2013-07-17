@@ -3,17 +3,15 @@ package uk.co.techblue.alfresco.dto.user;
 import javax.ws.rs.QueryParam;
 
 import uk.co.techblue.alfresco.dto.BaseDto;
+import uk.co.techblue.alfresco.dto.common.AuthorityType;
 import uk.co.techblue.alfresco.dto.common.GroupSorter;
 
-public class GroupQuery extends BaseDto {
+public class AuthorityQuery extends BaseDto {
 
-	private static final long serialVersionUID = 4809842369740131482L;
-	
-	@QueryParam("shortNameFilter")
-	private String shortNameFilter;
-	
-	@QueryParam("zone")
-	private Boolean zone;
+	private static final long serialVersionUID = -3979600916433012399L;
+
+	@QueryParam("authorityType")
+	private AuthorityType authorityType;
 	
 	@QueryParam("maxItems")
 	private Integer maxItems;
@@ -24,20 +22,12 @@ public class GroupQuery extends BaseDto {
 	@QueryParam("sortBy")
 	private GroupSorter sortBy;
 
-	public String getShortNameFilter() {
-		return shortNameFilter;
+	public AuthorityType getAuthorityType() {
+		return authorityType;
 	}
 
-	public void setShortNameFilter(String shortNameFilter) {
-		this.shortNameFilter = shortNameFilter;
-	}
-
-	public Boolean getZone() {
-		return zone;
-	}
-
-	public void setZone(Boolean zone) {
-		this.zone = zone;
+	public void setAuthorityType(AuthorityType authorityType) {
+		this.authorityType = authorityType;
 	}
 
 	public Integer getMaxItems() {
@@ -63,5 +53,6 @@ public class GroupQuery extends BaseDto {
 	public void setSortBy(GroupSorter sortBy) {
 		this.sortBy = sortBy;
 	}
+
 
 }
