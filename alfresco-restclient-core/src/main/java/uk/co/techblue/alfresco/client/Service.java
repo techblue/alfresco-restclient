@@ -119,7 +119,7 @@ public abstract class Service<RT extends Resource> {
 			try {
 				if (cause != null) {
 					exception = exceptionClazz.getConstructor(String.class,
-							Throwable.class).newInstance(cause.getMessage(),
+							Throwable.class).newInstance("An error occurred while fetching entity from HTTP response:\n"+errorResponse,
 							cause);
 				} else {
 					exception = exceptionClazz.getConstructor(String.class)
