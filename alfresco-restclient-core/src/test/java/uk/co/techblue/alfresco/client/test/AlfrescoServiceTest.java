@@ -3,9 +3,12 @@ package uk.co.techblue.alfresco.client.test;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.activation.FileDataSource;
+
 import uk.co.techblue.alfresco.dto.AuthResponse;
 import uk.co.techblue.alfresco.dto.Credentials;
 import uk.co.techblue.alfresco.dto.common.GroupSorter;
+import uk.co.techblue.alfresco.dto.content.ContentUploadMetadata;
 import uk.co.techblue.alfresco.dto.user.AddUser;
 import uk.co.techblue.alfresco.dto.user.AuthorityQuery;
 import uk.co.techblue.alfresco.dto.user.GroupQuery;
@@ -37,10 +40,27 @@ public class AlfrescoServiceTest {
 		// testChangeUserPassword();
 		// testUpdateUser();
 		// testGetUser();
-		testGetContent();
+//		testGetContent();
+	    testUploadContent();
 	}
 
-	private static void testGetContent() {
+	private static void testUploadContent() {
+	    ContentService contentService = new ContentService(BASE_URL,
+                AUTH_TICKET);
+	    ContentUploadMetadata uploadMetadata = new ContentUploadMetadata();
+	    FileDataSource fileDataSource =  new FileDataSource("/tmp/Sales Software initiation Planning Meeting Agenda&MOM _19th July.odt");
+	    uploadMetadata.setFileData(fileDataSource);
+	    uploadMetadata.setDestination("2d0948ba-c907-436f-a7a6-9d00aeb031c0");
+	    uploadMetadata.setFileName("MOM _19th July.odt");
+	    uploadMetadata.setDescription("Minutes of meeting");
+        try {
+            System.out.println(contentService.uploadDocument(uploadMetadata));
+        } catch (ContentException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void testGetContent() {
 		ContentService contentService = new ContentService(BASE_URL,
 				AUTH_TICKET);
 		try {

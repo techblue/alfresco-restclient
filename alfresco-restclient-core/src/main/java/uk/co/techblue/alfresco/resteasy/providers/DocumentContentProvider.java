@@ -40,7 +40,7 @@ import org.apache.james.mime4j.field.FieldName;
 import org.jboss.resteasy.logging.Logger;
 import org.jboss.resteasy.plugins.providers.ProviderHelper;
 
-import uk.co.techblue.alfresco.dto.DocumentContent;
+import uk.co.techblue.alfresco.dto.content.DocumentContent;
 
 @Provider
 @Produces("*/*")

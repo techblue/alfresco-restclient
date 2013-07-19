@@ -13,9 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package uk.co.techblue.alfresco.dto;
+package uk.co.techblue.alfresco.dto.content;
 
 import java.io.File;
+
+import uk.co.techblue.alfresco.dto.BaseDto;
 
 public class DocumentContent extends BaseDto {
 
