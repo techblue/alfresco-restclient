@@ -3,8 +3,9 @@ package uk.co.techblue.alfresco.service;
 import org.jboss.resteasy.client.ClientResponse;
 
 import uk.co.techblue.alfresco.client.AlfrescoConstants;
-import uk.co.techblue.alfresco.dto.content.ContentUploadMetadata;
+import uk.co.techblue.alfresco.dto.content.ContentUploadForm;
 import uk.co.techblue.alfresco.dto.content.DocumentContent;
+import uk.co.techblue.alfresco.dto.content.UploadResponse;
 import uk.co.techblue.alfresco.exception.ContentException;
 import uk.co.techblue.alfresco.resource.AbstractService;
 import uk.co.techblue.alfresco.resource.ContentResource;
@@ -39,8 +40,8 @@ public class ContentService extends AbstractService<ContentResource> {
         return parseEntityFromResponse(contentResponse, ContentException.class);
     }
 
-    public String uploadDocument(ContentUploadMetadata uploadMetadata) throws ContentException {
-        ClientResponse<String> contentResponse = resourceProxy.uploadDocument(authTicket, uploadMetadata);
+    public UploadResponse uploadDocument(ContentUploadForm uploadMetadata) throws ContentException {
+        ClientResponse<UploadResponse> contentResponse = resourceProxy.uploadDocument(authTicket, uploadMetadata);
         return parseEntityFromResponse(contentResponse, ContentException.class);
     }
 

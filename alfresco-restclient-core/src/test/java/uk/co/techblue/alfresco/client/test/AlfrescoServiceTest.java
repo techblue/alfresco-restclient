@@ -8,7 +8,7 @@ import javax.activation.FileDataSource;
 import uk.co.techblue.alfresco.dto.AuthResponse;
 import uk.co.techblue.alfresco.dto.Credentials;
 import uk.co.techblue.alfresco.dto.common.GroupSorter;
-import uk.co.techblue.alfresco.dto.content.ContentUploadMetadata;
+import uk.co.techblue.alfresco.dto.content.ContentUploadForm;
 import uk.co.techblue.alfresco.dto.user.AddUser;
 import uk.co.techblue.alfresco.dto.user.AuthorityQuery;
 import uk.co.techblue.alfresco.dto.user.GroupQuery;
@@ -47,12 +47,16 @@ public class AlfrescoServiceTest {
 	private static void testUploadContent() {
 	    ContentService contentService = new ContentService(BASE_URL,
                 AUTH_TICKET);
-	    ContentUploadMetadata uploadMetadata = new ContentUploadMetadata();
-	    FileDataSource fileDataSource =  new FileDataSource("/tmp/Sales Software initiation Planning Meeting Agenda&MOM _19th July.odt");
+	    ContentUploadForm uploadMetadata = new ContentUploadForm();
+	    FileDataSource fileDataSource =  new FileDataSource("C:\\Users\\ajay\\Pictures\\anonymous.jpg");
 	    uploadMetadata.setFileData(fileDataSource);
-	    uploadMetadata.setDestination("2d0948ba-c907-436f-a7a6-9d00aeb031c0");
-	    uploadMetadata.setFileName("MOM _19th July.odt");
-	    uploadMetadata.setDescription("Minutes of meeting");
+	    uploadMetadata.setDestination("workspace://SpacesStore/2d0948ba-c907-436f-a7a6-9d00aeb031c0");
+//	    uploadMetadata.setContainerId("documentLibrary");
+//	    uploadMetadata.setUploadDirectory("/Company Home");
+//	    uploadMetadata.setSiteId("swsdp");
+	    uploadMetadata.setFileName("anonymous.jpg");
+	    uploadMetadata.setDescription("Test REST upload");
+	    
         try {
             System.out.println(contentService.uploadDocument(uploadMetadata));
         } catch (ContentException e) {

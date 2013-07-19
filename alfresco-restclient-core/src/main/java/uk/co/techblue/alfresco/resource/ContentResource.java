@@ -13,8 +13,9 @@ import org.jboss.resteasy.client.ClientResponse;
 
 import uk.co.techblue.alfresco.client.AlfrescoConstants;
 import uk.co.techblue.alfresco.client.Resource;
-import uk.co.techblue.alfresco.dto.content.ContentUploadMetadata;
+import uk.co.techblue.alfresco.dto.content.ContentUploadForm;
 import uk.co.techblue.alfresco.dto.content.DocumentContent;
+import uk.co.techblue.alfresco.dto.content.UploadResponse;
 
 @Path(AlfrescoConstants.RESOURCE_CONTEXT_BASE_PATH)
 public interface ContentResource extends Resource {
@@ -28,7 +29,7 @@ public interface ContentResource extends Resource {
     @POST
     @Path("upload")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    ClientResponse<String> uploadDocument(@QueryParam(AlfrescoConstants.AUTH_TICKET_PARAM_NAME) String ticket,
-            @MultipartForm ContentUploadMetadata contentUploadMetadata);
+    ClientResponse<UploadResponse> uploadDocument(@QueryParam(AlfrescoConstants.AUTH_TICKET_PARAM_NAME) String ticket,
+            @MultipartForm ContentUploadForm contentUploadMetadata);
 
 }

@@ -1,48 +1,59 @@
 package uk.co.techblue.alfresco.dto.content;
 
+import java.io.Serializable;
+
 import javax.activation.FileDataSource;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.core.MediaType;
 
 import org.jboss.resteasy.annotations.providers.multipart.PartType;
 
-import uk.co.techblue.alfresco.dto.BaseDto;
-
-public class ContentUploadMetadata extends BaseDto {
+public class ContentUploadForm implements Serializable {
 
     private static final long serialVersionUID = -776494597401819448L;
 
     @FormParam("filename")
+    @PartType(MediaType.TEXT_PLAIN)
     private String fileName;
 
     @FormParam("description")
+    @PartType(MediaType.TEXT_PLAIN)
     private String description;
 
     @FormParam("destination")
+    @PartType(MediaType.TEXT_PLAIN)
     private String destination;
 
     @FormParam("siteid")
+    @PartType(MediaType.TEXT_PLAIN)
     private String siteId;
 
     @FormParam("containerid")
+    @PartType(MediaType.TEXT_PLAIN)
     private String containerId;
 
     @FormParam("uploaddirectory")
+    @PartType(MediaType.TEXT_PLAIN)
     private String uploadDirectory;
 
     @FormParam("updatenoderef")
+    @PartType(MediaType.TEXT_PLAIN)
     private String updateNodeRef;
 
     @FormParam("contenttype")
+    @PartType(MediaType.TEXT_PLAIN)
     private String contentType;
 
     @FormParam("majorversion")
+    @PartType(MediaType.TEXT_PLAIN)
     private String majorVersion;
 
     @FormParam("overwrite")
+    @PartType(MediaType.TEXT_PLAIN)
     private boolean overwrite;
 
     @FormParam("thumbnails")
+    @PartType(MediaType.TEXT_PLAIN)
     private boolean thumbnails;
 
     @FormParam("filedata")
