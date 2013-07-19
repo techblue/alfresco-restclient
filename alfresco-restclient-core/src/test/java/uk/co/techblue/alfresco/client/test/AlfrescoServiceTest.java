@@ -11,30 +11,43 @@ import uk.co.techblue.alfresco.dto.user.AuthorityQuery;
 import uk.co.techblue.alfresco.dto.user.GroupQuery;
 import uk.co.techblue.alfresco.dto.user.User;
 import uk.co.techblue.alfresco.exception.AuthenticationException;
+import uk.co.techblue.alfresco.exception.ContentException;
 import uk.co.techblue.alfresco.exception.GroupException;
 import uk.co.techblue.alfresco.exception.UserException;
 import uk.co.techblue.alfresco.service.AuthService;
+import uk.co.techblue.alfresco.service.ContentService;
 import uk.co.techblue.alfresco.service.GroupService;
 import uk.co.techblue.alfresco.service.UserService;
 
 public class AlfrescoServiceTest {
 
 	private static final String BASE_URL = "http://192.168.100.106:8080";
-	private static final String AUTH_TICKET = "TICKET_936a073854757fc10fb4e55f82752ce78710e04c";
+	private static final String AUTH_TICKET = "TICKET_b434309f77e23789c784e1d19d9aae7447a4892b";
 
 	public static void main(String[] args) {
 		// testLogin(getCredentials());
 		// testGetUsers();
 		// testGetGroups();
-//		 testGetGroup();
+		// testGetGroup();
 		// testGetChildAuthorities();
 		// testGetParentAuthorities();
-//		testDeleteUser();
-//		testCreateUser();
-//		testGetUser();
-//		testChangeUserPassword();
-//		testUpdateUser();
-		testGetUser();
+		// testDeleteUser();
+		// testCreateUser();
+		// testGetUser();
+		// testChangeUserPassword();
+		// testUpdateUser();
+		// testGetUser();
+		testGetContent();
+	}
+
+	private static void testGetContent() {
+		ContentService contentService = new ContentService(BASE_URL,
+				AUTH_TICKET);
+		try {
+			System.out.println(contentService.getNodeContent("ee4c0ea1-6ddd-4523-85e8-a81dd2e48d90"));
+		} catch (ContentException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private static void testUpdateUser() {
@@ -50,7 +63,7 @@ public class AlfrescoServiceTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private static void testChangeUserPassword() {
 		UserService userService = new UserService(BASE_URL, AUTH_TICKET);
 		try {

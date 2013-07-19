@@ -47,9 +47,9 @@ import uk.co.techblue.alfresco.dto.DocumentContent;
 @Consumes("*/*")
 public class DocumentContentProvider implements MessageBodyReader<DocumentContent> {
 
-	private static final String PREFIX = "pfx";
+	private static final String PREFIX = "dms";
 
-	private static final String SUFFIX = "sfx";
+	private static final String SUFFIX = "file";
 
 	private static final String PARAM_FILENAME = "filename";
 

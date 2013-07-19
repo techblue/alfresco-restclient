@@ -16,9 +16,8 @@
 package uk.co.techblue.alfresco.dto;
 
 import java.io.File;
-import java.io.Serializable;
 
-public class DocumentContent implements Serializable {
+public class DocumentContent extends BaseDto {
 
 	private static final long serialVersionUID = 7947888264561168246L;
 
