@@ -40,21 +40,22 @@ public class AlfrescoServiceTest {
 		// testChangeUserPassword();
 		// testUpdateUser();
 		// testGetUser();
-//		testGetContent();
-	    testUploadContent();
+		testGetContent();
+//	    testUploadContent();
 	}
 
 	private static void testUploadContent() {
 	    ContentService contentService = new ContentService(BASE_URL,
                 AUTH_TICKET);
 	    ContentUploadForm uploadMetadata = new ContentUploadForm();
-	    FileDataSource fileDataSource =  new FileDataSource("C:\\Users\\ajay\\Pictures\\anonymous.jpg");
+//	    FileDataSource fileDataSource =  new FileDataSource("C:\\Users\\Public\\Pictures\\Sample Pictures\\Desert.jpg");
+	    FileDataSource fileDataSource =  new FileDataSource("D:\\ImportantStuff\\Documents\\Team Evaluation\\Team_Evaluation_Form_Template.pdf");
 	    uploadMetadata.setFileData(fileDataSource);
 	    uploadMetadata.setDestination("workspace://SpacesStore/2d0948ba-c907-436f-a7a6-9d00aeb031c0");
 //	    uploadMetadata.setContainerId("documentLibrary");
 //	    uploadMetadata.setUploadDirectory("/Company Home");
 //	    uploadMetadata.setSiteId("swsdp");
-	    uploadMetadata.setFileName("anonymous.jpg");
+	    uploadMetadata.setFileName("Team Evaluation Form_Template.pdf");
 	    uploadMetadata.setDescription("Test REST upload");
 	    
         try {
@@ -68,7 +69,9 @@ public class AlfrescoServiceTest {
 		ContentService contentService = new ContentService(BASE_URL,
 				AUTH_TICKET);
 		try {
-			System.out.println(contentService.getNodeContent("ee4c0ea1-6ddd-4523-85e8-a81dd2e48d90"));
+			//ba90e398-dc4f-4de8-a97d-e30669ebee6c DOCX
+			//27eb6ac6-abb3-4e31-be96-a97140ff641a DOC
+			System.out.println(contentService.getNodeContent("27eb6ac6-abb3-4e31-be96-a97140ff641a"));
 		} catch (ContentException e) {
 			e.printStackTrace();
 		}

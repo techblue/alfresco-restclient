@@ -24,12 +24,18 @@ public interface ContentResource extends Resource {
     @Path("node/content{nodeProperty}/{storeType}/{storeId}/{nodeId}")
     ClientResponse<DocumentContent> getNodeContent(@QueryParam(AlfrescoConstants.AUTH_TICKET_PARAM_NAME) String ticket,
             @PathParam("nodeProperty") String nodeProperty, @PathParam("storeType") String storeType,
-            @PathParam("storeId") String storeId, @PathParam("nodeId") String nodeId);
+            @PathParam("storeId") String storeId, @PathParam("nodeId") String nodeId, @QueryParam("a") boolean attach);
 
     @POST
     @Path("upload")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     ClientResponse<UploadResponse> uploadDocument(@QueryParam(AlfrescoConstants.AUTH_TICKET_PARAM_NAME) String ticket,
             @MultipartForm ContentUploadForm contentUploadMetadata);
+    
+    @GET
+    @Path("metadata")
+    ClientResponse<DocumentContent> getNodeMetadata(@QueryParam(AlfrescoConstants.AUTH_TICKET_PARAM_NAME) String ticket, 
+    		@PathParam("nodeId") String nodeId);
+
 
 }

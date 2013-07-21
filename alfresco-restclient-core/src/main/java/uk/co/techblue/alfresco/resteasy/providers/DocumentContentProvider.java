@@ -37,6 +37,10 @@ import javax.ws.rs.ext.Provider;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.james.mime4j.field.FieldName;
+import org.apache.tika.config.TikaConfig;
+import org.apache.tika.mime.MimeType;
+import org.apache.tika.mime.MimeTypeException;
+import org.apache.tika.mime.MimeTypes;
 import org.jboss.resteasy.logging.Logger;
 import org.jboss.resteasy.plugins.providers.ProviderHelper;
 
@@ -78,11 +82,11 @@ public class DocumentContentProvider implements MessageBodyReader<DocumentConten
 							+ FieldName.CONTENT_DISPOSITION + " : "
 							+ dispositionHeader, pe);
 		}
-		DocumentContent DocumentContent = new DocumentContent();
+		DocumentContent documentContent = new DocumentContent();
 		String prefix = null;
 		String suffix = null;
 		if (contentDisposition != null) {
-			setDocumentAttributes(contentDisposition, DocumentContent);
+			setDocumentAttributes(contentDisposition, documentContent);
 			suffix = getFileSuffix(contentDisposition, mediaType);
 			prefix = getFilePrefix(contentDisposition);
 		} else {
@@ -93,7 +97,7 @@ public class DocumentContentProvider implements MessageBodyReader<DocumentConten
 			prefix = PREFIX;
 		}
 		if (StringUtils.isBlank(suffix)) {
-			suffix = SUFFIX;
+			suffix = "."+SUFFIX;
 		}
 		if (downloadDirectory != null) {
 			try {
@@ -118,9 +122,9 @@ public class DocumentContentProvider implements MessageBodyReader<DocumentConten
 		} finally {
 			output.close();
 		}
-		DocumentContent.setDocFile(downloadedFile);
+		documentContent.setDocFile(downloadedFile);
 
-		return DocumentContent;
+		return documentContent;
 	}
 
 	private String getFilePrefix(ContentDisposition contentDisposition) {
@@ -147,21 +151,33 @@ public class DocumentContentProvider implements MessageBodyReader<DocumentConten
 
 	private String getFileSuffix(MediaType mediaType, String fileName) {
 		String suffix = StringUtils.substringAfterLast(fileName, ".");
-		String mediaSubtype = StringUtils.defaultString(mediaType.getSubtype());
-		boolean suffixBlank = StringUtils.isBlank(suffix);
-		boolean mediaSubtypeBlank = StringUtils.isBlank(mediaSubtype);
-		if (!suffixBlank && mediaSubtype.equalsIgnoreCase(suffix)) {
+		if (StringUtils.isNotBlank(suffix)) {
 			suffix = "." + suffix;
-		} else if (!suffixBlank && mediaSubtypeBlank) {
-			suffix = "." + suffix;
-		} else if (suffixBlank && !mediaSubtypeBlank) {
-			suffix = "." + mediaSubtype;
-		} else if (!suffixBlank && !mediaSubtypeBlank) {
-			suffix = "." + suffix + "." + mediaSubtype;
 		} else {
-			suffix = ".pdf";
+			String mediaSubtype = StringUtils.defaultString(mediaType.getSubtype());
+			suffix = getFileExtension(getHttpMimeType(mediaType), mediaSubtype);
 		}
 		return suffix;
+	}
+
+	private String getHttpMimeType(MediaType mediaType) {
+		return mediaType.getType()+"/"+mediaType.getSubtype();
+	}
+
+	private String getFileExtension(String mimeType, String defaultExtension) {
+		TikaConfig config = TikaConfig.getDefaultConfig();
+		MimeTypes allTypes = config.getMimeRepository();
+		MimeType contentType = null;
+		try {
+			contentType = allTypes.forName(mimeType);
+		} catch (MimeTypeException mte) {
+			logger.error("An error occurred while getting extension mapping against mime: "+mimeType, mte);
+		}
+		if (contentType != null) {
+			return contentType.getExtension();
+		}
+		logger.error("UNABLE TO GET EXTENSION AGAINST MIMETYPE '"+mimeType+"'. RETURNING EXTENSION VALUE SAME AS MIMETYPE.");
+		return "." + defaultExtension;
 	}
 
 	private ContentDisposition getContentDisposition(String dispositionHeader)

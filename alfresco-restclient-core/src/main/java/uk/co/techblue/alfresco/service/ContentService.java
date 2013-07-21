@@ -24,19 +24,19 @@ public class ContentService extends AbstractService<ContentResource> {
     public DocumentContent getNodeContent(String nodeProperty, String storeType, String storeId, String nodeId)
             throws ContentException {
         ClientResponse<DocumentContent> contentResponse = resourceProxy.getNodeContent(authTicket, nodeProperty, storeType,
-                storeId, nodeId);
+                storeId, nodeId, true);
         return parseEntityFromResponse(contentResponse, ContentException.class);
     }
 
     public DocumentContent getNodeContent(String storeType, String storeId, String nodeId) throws ContentException {
         ClientResponse<DocumentContent> contentResponse = resourceProxy.getNodeContent(authTicket, "", storeType, storeId,
-                nodeId);
+                nodeId, true);
         return parseEntityFromResponse(contentResponse, ContentException.class);
     }
 
     public DocumentContent getNodeContent(String nodeId) throws ContentException {
         ClientResponse<DocumentContent> contentResponse = resourceProxy.getNodeContent(authTicket, "",
-                AlfrescoConstants.DEFAULT_STORE_TYPE, AlfrescoConstants.DEFAULT_STORE_ID, nodeId);
+                AlfrescoConstants.DEFAULT_STORE_TYPE, AlfrescoConstants.DEFAULT_STORE_ID, nodeId, true);
         return parseEntityFromResponse(contentResponse, ContentException.class);
     }
 
