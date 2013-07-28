@@ -1,0 +1,9 @@
+<webscript>
+    <shortname>Performs a search on ScriptNode objects.</shortname>
+    <description>Performs a search on ScriptNode objects. Returns an
+        array of ScriptNode objects representing the search results.
+    </description>
+    <url>/api/search/advanced</url>
+    <format default="json">argument</format>
+    <authentication>user</authentication>
+</webscript>

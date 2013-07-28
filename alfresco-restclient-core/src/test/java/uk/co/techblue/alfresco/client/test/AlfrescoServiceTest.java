@@ -9,6 +9,7 @@ import uk.co.techblue.alfresco.dto.AuthResponse;
 import uk.co.techblue.alfresco.dto.Credentials;
 import uk.co.techblue.alfresco.dto.common.GroupSorter;
 import uk.co.techblue.alfresco.dto.content.ContentUploadForm;
+import uk.co.techblue.alfresco.dto.content.SearchRequest;
 import uk.co.techblue.alfresco.dto.user.AddUser;
 import uk.co.techblue.alfresco.dto.user.AuthorityQuery;
 import uk.co.techblue.alfresco.dto.user.GroupQuery;
@@ -16,6 +17,7 @@ import uk.co.techblue.alfresco.dto.user.User;
 import uk.co.techblue.alfresco.exception.AuthenticationException;
 import uk.co.techblue.alfresco.exception.ContentException;
 import uk.co.techblue.alfresco.exception.GroupException;
+import uk.co.techblue.alfresco.exception.SearchException;
 import uk.co.techblue.alfresco.exception.UserException;
 import uk.co.techblue.alfresco.service.AuthService;
 import uk.co.techblue.alfresco.service.ContentService;
@@ -40,11 +42,28 @@ public class AlfrescoServiceTest {
 		// testChangeUserPassword();
 		// testUpdateUser();
 		// testGetUser();
-		testGetContent();
+//		testGetContent();
+	    testAdvancedSearch();
 //	    testUploadContent();
 	}
 
-	private static void testUploadContent() {
+	private static void testAdvancedSearch() {
+	    ContentService contentService = new ContentService(BASE_URL,
+                AUTH_TICKET);
+	  //EVERYTHING EXCEPT FOR PROPCO CONTENT MODEL
+//	    SearchRequest searchReuqest = new SearchRequest("@cm\\:lastName:\"Arora\"");
+	    //FOR PROPCO CONTENT MODEL
+//	    SearchRequest searchReuqest = new SearchRequest("cm:lastName=\"Jain\"");
+	    SearchRequest searchReuqest = new SearchRequest("+PATH:\"//cm:QA//*\" +@cm\\:lastName:\"Jain\"");
+	    try {
+            System.out.println("RESPONSE:"+contentService.search(searchReuqest));
+        } catch (SearchException e) {
+            e.printStackTrace();
+        }
+	    
+    }
+
+    private static void testUploadContent() {
 	    ContentService contentService = new ContentService(BASE_URL,
                 AUTH_TICKET);
 	    ContentUploadForm uploadMetadata = new ContentUploadForm();

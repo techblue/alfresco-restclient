@@ -13,8 +13,8 @@ import javax.ws.rs.core.MediaType;
 import org.jboss.resteasy.annotations.Form;
 import org.jboss.resteasy.client.ClientResponse;
 
-import uk.co.techblue.alfresco.client.AlfrescoConstants;
 import uk.co.techblue.alfresco.client.Resource;
+import uk.co.techblue.alfresco.commons.AlfrescoConstants;
 import uk.co.techblue.alfresco.dto.user.AuthorityQuery;
 import uk.co.techblue.alfresco.dto.user.Group;
 import uk.co.techblue.alfresco.dto.user.GroupQuery;

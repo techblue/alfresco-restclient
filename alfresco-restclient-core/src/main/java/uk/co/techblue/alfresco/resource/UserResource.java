@@ -13,8 +13,8 @@ import javax.ws.rs.core.MediaType;
 
 import org.jboss.resteasy.client.ClientResponse;
 
-import uk.co.techblue.alfresco.client.AlfrescoConstants;
 import uk.co.techblue.alfresco.client.Resource;
+import uk.co.techblue.alfresco.commons.AlfrescoConstants;
 import uk.co.techblue.alfresco.dto.user.AddUser;
 import uk.co.techblue.alfresco.dto.user.ChangePassword;
 import uk.co.techblue.alfresco.dto.user.SearchUserResponse;
