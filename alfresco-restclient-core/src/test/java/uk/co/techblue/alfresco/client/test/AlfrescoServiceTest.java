@@ -9,6 +9,8 @@ import uk.co.techblue.alfresco.dto.AuthResponse;
 import uk.co.techblue.alfresco.dto.Credentials;
 import uk.co.techblue.alfresco.dto.common.GroupSorter;
 import uk.co.techblue.alfresco.dto.content.ContentUploadForm;
+import uk.co.techblue.alfresco.dto.content.PagingConfig;
+import uk.co.techblue.alfresco.dto.content.QueryResponseSorter;
 import uk.co.techblue.alfresco.dto.content.SearchRequest;
 import uk.co.techblue.alfresco.dto.user.AddUser;
 import uk.co.techblue.alfresco.dto.user.AuthorityQuery;
@@ -55,6 +57,15 @@ public class AlfrescoServiceTest {
 	    //FOR PROPCO CONTENT MODEL
 //	    SearchRequest searchReuqest = new SearchRequest("cm:lastName=\"Jain\"");
 	    SearchRequest searchReuqest = new SearchRequest("+PATH:\"//cm:QA//*\" +@cm\\:lastName:\"Jain\"");
+	    PagingConfig pagingConfig = new PagingConfig();
+	    pagingConfig.setMaxItems(2);
+//	    pagingConfig.setSkipCount(5);
+	    QueryResponseSorter responseSorter = new QueryResponseSorter();
+	    responseSorter.setColumnName("@cm:modified");
+	    List<QueryResponseSorter> responseSorters = new ArrayList<QueryResponseSorter>();
+	    responseSorters.add(responseSorter);
+	    searchReuqest.setResponseSorters(responseSorters);
+	    searchReuqest.setPagingConfig(pagingConfig);
 	    try {
             System.out.println("RESPONSE:"+contentService.search(searchReuqest));
         } catch (SearchException e) {

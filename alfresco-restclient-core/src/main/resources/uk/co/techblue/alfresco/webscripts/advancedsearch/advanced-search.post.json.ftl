@@ -12,9 +12,11 @@
  "type":"${scriptNode.type}",
  "typeShort":"${scriptNode.typeShort}",
  "name":"${scriptNode.name}",
+ "displayPath":"${scriptNode.displayPath}",
  "isContainer":${scriptNode.isContainer?string},
  "isDocument":${scriptNode.isDocument?string},
  "isCategory":${scriptNode.isCategory?string},
+ "hasChildren":${scriptNode.hasChildren?string},
  <#if scriptNode.parent?exists>
  "parentNodeId":"${scriptNode.parent.id}",
  "parentNodeRef":"${scriptNode.parent.nodeRef}",
