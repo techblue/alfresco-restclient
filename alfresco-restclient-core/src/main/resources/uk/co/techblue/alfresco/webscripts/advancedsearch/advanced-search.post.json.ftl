@@ -22,19 +22,35 @@
  "parentNodeRef":"${scriptNode.parent.nodeRef}",
  "parentNodeName":"${scriptNode.parent.name}",
  </#if>
- "type":"${scriptNode.type}",
  "metadata":{
  <#list scriptNode.properties?keys as prop>
     <#if scriptNode.properties[prop]?exists>
      <#assign propertyName = prop?substring(prop?last_index_of(curlyBrace)+1)>
      <#if scriptNode.properties[prop]?is_date>
-        "${propertyName}" = "${scriptNode.properties[prop]?datetime}",
+        "${propertyName}":"${scriptNode.properties[prop]?datetime}"<#if prop_has_next>,</#if>
      <#else>
-        "${propertyName}" = "${scriptNode.properties[prop]?string}",
+        "${propertyName}":"${scriptNode.properties[prop]?string}"<#if prop_has_next>,</#if>
      </#if>
     </#if>
  </#list>
  }
-}
+ <#if scriptNode.createThumbnail?exists>
+ </#if>
+ <#if scriptNode.getThumbnails?exists>
+ ,"thumbnails":[
+ <#list scriptNode.getThumbnails as thumbnail>
+  	{
+  	"name":"${thumbnail.name}",
+  	"type":"${thumbnail.type}",
+ 	"nodeId":"${thumbnail.id}",
+ 	"nodeRef":"${thumbnail.nodeRef}",
+ 	"displayPath":"${thumbnail.displayPath}",
+ 	"isLinkToDocument":"${thumbnail.isLinkToDocument}",
+ 	"content":"${thumbnail.properties.content}"
+ 	}<#if thumbnail_has_next>,</#if>
+ </#list>
+ ]
+ </#if>
+}<#if scriptNode_has_next>,</#if>
 </#list>
 ]
