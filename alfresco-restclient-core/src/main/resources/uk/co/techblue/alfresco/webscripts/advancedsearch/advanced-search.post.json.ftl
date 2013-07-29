@@ -12,6 +12,7 @@
  "type":"${scriptNode.type}",
  "typeShort":"${scriptNode.typeShort}",
  "name":"${scriptNode.name}",
+ "size":${scriptNode.size},
  "displayPath":"${scriptNode.displayPath}",
  "isContainer":${scriptNode.isContainer?string},
  "isDocument":${scriptNode.isDocument?string},
