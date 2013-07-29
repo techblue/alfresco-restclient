@@ -30,6 +30,9 @@ public class ContentNode extends BaseDto {
 
 	@JsonProperty("name")
 	private String name;
+	
+	@JsonProperty("size")
+	private String size;
 
 	@JsonProperty("displayPath")
 	private String displayPath;
@@ -191,6 +194,14 @@ public class ContentNode extends BaseDto {
 			return metadata.get(name);
 		}
 		return null;
+	}
+
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
 	}
 
 }
