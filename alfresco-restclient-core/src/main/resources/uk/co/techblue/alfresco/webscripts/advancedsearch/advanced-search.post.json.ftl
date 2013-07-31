@@ -1,5 +1,6 @@
 <#assign curlyBrace = "}">
 [
+<#if searchResult?exists>
 <#list searchResult as scriptNode>
 {
  "nodeId":"${scriptNode.id}",
@@ -17,7 +18,9 @@
  "isContainer":${scriptNode.isContainer?string},
  "isDocument":${scriptNode.isDocument?string},
  "isCategory":${scriptNode.isCategory?string},
+ <#if scriptNode.hasChildren?exists>
  "hasChildren":${scriptNode.hasChildren?string},
+ </#if>
  <#if scriptNode.parent?exists>
  "parentNodeId":"${scriptNode.parent.id}",
  "parentNodeRef":"${scriptNode.parent.nodeRef}",
@@ -54,4 +57,5 @@
  </#if>
 }<#if scriptNode_has_next>,</#if>
 </#list>
+ </#if>
 ]
