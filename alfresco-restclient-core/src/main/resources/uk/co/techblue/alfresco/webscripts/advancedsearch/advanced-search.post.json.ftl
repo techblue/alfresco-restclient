@@ -32,6 +32,7 @@
      <#assign propertyName = prop?substring(prop?last_index_of(curlyBrace)+1)>
      <#if scriptNode.properties[prop]?is_date>
         "${propertyName}":"${scriptNode.properties[prop]?datetime}"<#if prop_has_next>,</#if>
+     <#elseif scriptNode.properties[prop]?is_sequence>
      <#else>
         "${propertyName}":"${scriptNode.properties[prop]?string}"<#if prop_has_next>,</#if>
      </#if>

@@ -2,7 +2,6 @@ package uk.co.techblue.alfresco.dto.content;
 
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 import uk.co.techblue.alfresco.commons.AlfrescoConstants;

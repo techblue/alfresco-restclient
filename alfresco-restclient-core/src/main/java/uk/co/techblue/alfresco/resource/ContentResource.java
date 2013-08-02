@@ -14,6 +14,7 @@ import org.jboss.resteasy.client.ClientResponse;
 
 import uk.co.techblue.alfresco.client.Resource;
 import uk.co.techblue.alfresco.commons.AlfrescoConstants;
+import uk.co.techblue.alfresco.dto.content.ContentMetadata;
 import uk.co.techblue.alfresco.dto.content.ContentUploadForm;
 import uk.co.techblue.alfresco.dto.content.DocumentContent;
 import uk.co.techblue.alfresco.dto.content.SearchRequest;
@@ -38,6 +39,14 @@ public interface ContentResource extends Resource {
     @Path("metadata")
     ClientResponse<DocumentContent> getNodeMetadata(@QueryParam(AlfrescoConstants.AUTH_TICKET_PARAM_NAME) String ticket,
             @PathParam("nodeId") String nodeId);
+
+    @POST
+    @Path("metadata/node/{storeType}/{storeId}/{nodeId}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    ClientResponse<String> storeNodeMetadata(@QueryParam(AlfrescoConstants.AUTH_TICKET_PARAM_NAME) String ticket,
+            @PathParam("storeType") String storeType, @PathParam("storeId") String storeId, @PathParam("nodeId") String nodeId,
+            ContentMetadata contentMetadata);
 
     @POST
     @Path("search/advanced")
