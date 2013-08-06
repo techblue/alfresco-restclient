@@ -6,15 +6,15 @@ import org.codehaus.jackson.annotate.JsonProperty;
 
 import uk.co.techblue.alfresco.dto.BaseDto;
 
-public class ErrorResponse extends BaseDto {
+public class ServiceResponse extends BaseDto {
 
 	private static final long serialVersionUID = -5904389506284205882L;
 
 	@JsonProperty
-	private ErrorStatus status;
+	private ServiceResponseStatus status;
 
 	@JsonProperty("message")
-	private String errorMessage;
+	private String message;
 
 	@JsonProperty
 	private String exception;
@@ -28,20 +28,20 @@ public class ErrorResponse extends BaseDto {
 	@JsonProperty
 	private String time;
 
-	public ErrorStatus getStatus() {
+	public ServiceResponseStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(ErrorStatus status) {
+	public void setStatus(ServiceResponseStatus status) {
 		this.status = status;
 	}
 
-	public String getErrorMessage() {
-		return errorMessage;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setErrorMessage(String errorMessage) {
-		this.errorMessage = errorMessage;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	public String getException() {

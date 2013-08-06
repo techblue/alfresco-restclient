@@ -9,7 +9,6 @@ import uk.co.techblue.alfresco.dto.user.Group;
 import uk.co.techblue.alfresco.dto.user.GroupQuery;
 import uk.co.techblue.alfresco.dto.user.SearchGroupResponse;
 import uk.co.techblue.alfresco.exception.GroupException;
-import uk.co.techblue.alfresco.resource.AbstractService;
 import uk.co.techblue.alfresco.resource.GroupResource;
 
 public class GroupService extends AbstractService<GroupResource> {

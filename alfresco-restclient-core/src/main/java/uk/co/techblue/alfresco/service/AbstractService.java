@@ -1,4 +1,4 @@
-package uk.co.techblue.alfresco.resource;
+package uk.co.techblue.alfresco.service;
 
 import uk.co.techblue.alfresco.client.Resource;
 import uk.co.techblue.alfresco.client.Service;

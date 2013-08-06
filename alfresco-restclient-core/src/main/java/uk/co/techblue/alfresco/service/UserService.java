@@ -7,7 +7,6 @@ import uk.co.techblue.alfresco.dto.user.ChangePassword;
 import uk.co.techblue.alfresco.dto.user.SearchUserResponse;
 import uk.co.techblue.alfresco.dto.user.User;
 import uk.co.techblue.alfresco.exception.UserException;
-import uk.co.techblue.alfresco.resource.AbstractService;
 import uk.co.techblue.alfresco.resource.UserResource;
 
 public class UserService extends AbstractService<UserResource> {

@@ -4,12 +4,12 @@ import org.codehaus.jackson.annotate.JsonProperty;
 
 import uk.co.techblue.alfresco.dto.BaseDto;
 
-public class ErrorStatus extends BaseDto {
+public class ServiceResponseStatus extends BaseDto {
 
 	private static final long serialVersionUID = 3517541718333984366L;
 
 	@JsonProperty
-	private String code;
+	private int code;
 
 	@JsonProperty
 	private String name;
@@ -17,11 +17,11 @@ public class ErrorStatus extends BaseDto {
 	@JsonProperty
 	private String description;
 
-	public String getCode() {
+	public int getCode() {
 		return code;
 	}
 
-	public void setCode(String code) {
+	public void setCode(int code) {
 		this.code = code;
 	}
 

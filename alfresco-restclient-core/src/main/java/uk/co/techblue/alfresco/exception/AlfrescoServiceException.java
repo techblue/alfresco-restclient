@@ -1,12 +1,12 @@
 package uk.co.techblue.alfresco.exception;
 
-import uk.co.techblue.alfresco.dto.error.ErrorResponse;
+import uk.co.techblue.alfresco.dto.error.ServiceResponse;
 
 public class AlfrescoServiceException extends Exception {
 
 	private static final long serialVersionUID = -6081873510684510L;
 
-	private ErrorResponse errorResponse;
+	private ServiceResponse errorResponse;
 
 	public AlfrescoServiceException(String message, Throwable cause) {
 		super(message, cause);
@@ -20,11 +20,11 @@ public class AlfrescoServiceException extends Exception {
 		super(cause);
 	}
 
-	public ErrorResponse getErrorResponse() {
+	public ServiceResponse getErrorResponse() {
 		return errorResponse;
 	}
 
-	public void setErrorResponse(ErrorResponse errorResponse) {
+	public void setErrorResponse(ServiceResponse errorResponse) {
 		this.errorResponse = errorResponse;
 	}
 

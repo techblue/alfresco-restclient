@@ -10,7 +10,6 @@ import uk.co.techblue.alfresco.dto.content.SearchRequest;
 import uk.co.techblue.alfresco.dto.content.UploadResponse;
 import uk.co.techblue.alfresco.exception.ContentException;
 import uk.co.techblue.alfresco.exception.SearchException;
-import uk.co.techblue.alfresco.resource.AbstractService;
 import uk.co.techblue.alfresco.resource.ContentResource;
 
 public class ContentService extends AbstractService<ContentResource> {

@@ -9,7 +9,7 @@ import org.jboss.resteasy.client.ClientResponseFailure;
 import org.jboss.resteasy.client.ProxyFactory;
 import org.jboss.resteasy.logging.Logger;
 
-import uk.co.techblue.alfresco.dto.error.ErrorResponse;
+import uk.co.techblue.alfresco.dto.error.ServiceResponse;
 import uk.co.techblue.alfresco.exception.AlfrescoServiceException;
 
 public abstract class Service<RT extends Resource> {
@@ -105,7 +105,7 @@ public abstract class Service<RT extends Resource> {
 			Exception cause = null;
 			try {
 //				String error = clientResponse.getEntity(String.class);
-				errorResponse = clientResponse.getEntity(ErrorResponse.class);
+				errorResponse = clientResponse.getEntity(ServiceResponse.class);
 				if (errorResponse == null) {
 					errorResponse = clientResponse.getEntity(String.class);
 				}
@@ -131,8 +131,8 @@ public abstract class Service<RT extends Resource> {
 											+ clientResponse.getStatus()
 											+ " \n Error:" + errorResponse);
 				}
-				if (exception != null && errorResponse instanceof ErrorResponse) {
-					exception.setErrorResponse((ErrorResponse) errorResponse);
+				if (exception != null && errorResponse instanceof ServiceResponse) {
+					exception.setErrorResponse((ServiceResponse) errorResponse);
 				}
 			} catch (IllegalArgumentException iae) {
 				throw new IllegalStateException(genericErrorMsg, iae);
