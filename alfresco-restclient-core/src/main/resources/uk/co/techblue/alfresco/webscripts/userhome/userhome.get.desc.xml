@@ -1,0 +1,9 @@
+
+<webscript>
+    <shortname>Get Person Home Folder</shortname>
+    <description>Get the home folder details of a person.</description>
+    <url>/api/people/{userName}/home</url>
+    <format default="json">argument</format>
+    <authentication>user</authentication>
+    <transaction allow="readonly">required</transaction>
+</webscript>
