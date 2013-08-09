@@ -1,7 +1,9 @@
 package uk.co.techblue.alfresco.service;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jboss.resteasy.client.ClientResponse;
 
+import uk.co.techblue.alfresco.dto.content.ContentNode;
 import uk.co.techblue.alfresco.dto.user.AddUser;
 import uk.co.techblue.alfresco.dto.user.ChangePassword;
 import uk.co.techblue.alfresco.dto.user.SearchUserResponse;
@@ -49,12 +51,12 @@ public class UserService extends AbstractService<UserResource> {
 		}
 	}
 
-	public void changePassword(String userName, String oldPassword,
-			String newPassword) throws UserException {
-		ChangePassword changePassword = new ChangePassword();
+	public void changePassword(final String userName, final String oldPassword,
+			final String newPassword) throws UserException {
+		final ChangePassword changePassword = new ChangePassword();
 		changePassword.setOldPassword(oldPassword);
 		changePassword.setNewPassword(newPassword);
-		ClientResponse<String> userResponse = resourceProxy.changePassword(
+		final ClientResponse<String> userResponse = resourceProxy.changePassword(
 				authTicket, userName, changePassword);
 		try {
 			validateResponseSuccess(userResponse, UserException.class);
@@ -63,11 +65,22 @@ public class UserService extends AbstractService<UserResource> {
 		}
 	}
 
-	public String updateUser(String username, User userDetails)
+	public String updateUser(final String username, final User userDetails)
 			throws UserException {
-		ClientResponse<String> userResponse = resourceProxy.updateUser(
+		final ClientResponse<String> userResponse = resourceProxy.updateUser(
 				authTicket, username, userDetails);
 		return parseEntityFromResponse(userResponse, UserException.class);
+	}
+	
+	public ContentNode getUserHome(final String username)
+			throws UserException {
+		final ClientResponse<ContentNode> userResponse = resourceProxy.getUserHome(
+				authTicket, username);
+		final ContentNode homeFolder = parseEntityFromResponse(userResponse, UserException.class);
+		if(StringUtils.isNotBlank(homeFolder.getNodeId())) {
+			return homeFolder;
+		}
+		return null;
 	}
 
 }

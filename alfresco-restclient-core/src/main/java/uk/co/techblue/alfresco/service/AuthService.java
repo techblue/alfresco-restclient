@@ -19,6 +19,11 @@ public class AuthService extends Service<AuthResource> {
 		this.credentials = credentials;
 	}
 	
+	public AuthService(String restBaseUri) {
+		super(restBaseUri);
+		this.credentials = null;
+	}
+	
 	@Override
 	protected Class<AuthResource> getResourceClass() {
 		return AuthResource.class;

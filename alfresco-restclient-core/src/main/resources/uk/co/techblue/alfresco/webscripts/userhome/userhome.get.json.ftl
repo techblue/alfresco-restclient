@@ -1,5 +1,5 @@
-<#if homeFolder?exists>
 {
+<#if homeFolder?exists>
  "nodeId":"${homeFolder.id}",
  "nodeRef":"${homeFolder.nodeRef}",
  "storeType":"${homeFolder.storeType}",
@@ -23,5 +23,5 @@
  "parentNodeName":"${homeFolder.parent.name}",
  </#if>
  "displayPath":"${homeFolder.displayPath}"
- }
  </#if>
+ }

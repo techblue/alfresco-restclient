@@ -15,6 +15,7 @@ import org.jboss.resteasy.client.ClientResponse;
 
 import uk.co.techblue.alfresco.client.Resource;
 import uk.co.techblue.alfresco.commons.AlfrescoConstants;
+import uk.co.techblue.alfresco.dto.content.ContentNode;
 import uk.co.techblue.alfresco.dto.user.AddUser;
 import uk.co.techblue.alfresco.dto.user.ChangePassword;
 import uk.co.techblue.alfresco.dto.user.SearchUserResponse;
@@ -69,5 +70,12 @@ public interface UserResource extends Resource {
 	ClientResponse<String> updateUser(
 			@QueryParam(AlfrescoConstants.AUTH_TICKET_PARAM_NAME) String ticket,
 			@PathParam("username") String username, User user);
+	
+	@GET
+	@Path("people/{username}/home")
+	@Produces(MediaType.APPLICATION_JSON)
+	ClientResponse<ContentNode> getUserHome(
+			@QueryParam(AlfrescoConstants.AUTH_TICKET_PARAM_NAME) String ticket,
+			@PathParam("username") String username);
 
 }
