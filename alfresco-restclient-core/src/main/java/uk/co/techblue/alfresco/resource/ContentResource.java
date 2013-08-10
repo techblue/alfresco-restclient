@@ -1,5 +1,7 @@
 package uk.co.techblue.alfresco.resource;
 
+import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -15,6 +17,7 @@ import org.jboss.resteasy.client.ClientResponse;
 import uk.co.techblue.alfresco.client.Resource;
 import uk.co.techblue.alfresco.commons.AlfrescoConstants;
 import uk.co.techblue.alfresco.dto.content.ContentMetadata;
+import uk.co.techblue.alfresco.dto.content.ContentNode;
 import uk.co.techblue.alfresco.dto.content.ContentUploadForm;
 import uk.co.techblue.alfresco.dto.content.DocumentContent;
 import uk.co.techblue.alfresco.dto.content.SearchRequest;
@@ -52,7 +55,7 @@ public interface ContentResource extends Resource {
     @Path("search/advanced")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    ClientResponse<String> advancedSearch(@QueryParam(AlfrescoConstants.AUTH_TICKET_PARAM_NAME) String ticket,
+    ClientResponse<List<ContentNode>> advancedSearch(@QueryParam(AlfrescoConstants.AUTH_TICKET_PARAM_NAME) String ticket,
             SearchRequest searchReuqest);
 
 }

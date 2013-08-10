@@ -1,9 +1,12 @@
 package uk.co.techblue.alfresco.service;
 
+import java.util.List;
+
 import org.jboss.resteasy.client.ClientResponse;
 
 import uk.co.techblue.alfresco.commons.AlfrescoConstants;
 import uk.co.techblue.alfresco.dto.content.ContentMetadata;
+import uk.co.techblue.alfresco.dto.content.ContentNode;
 import uk.co.techblue.alfresco.dto.content.ContentUploadForm;
 import uk.co.techblue.alfresco.dto.content.DocumentContent;
 import uk.co.techblue.alfresco.dto.content.SearchRequest;
@@ -47,8 +50,8 @@ public class ContentService extends AbstractService<ContentResource> {
         return parseEntityFromResponse(contentResponse, ContentException.class);
     }
 
-    public String search(SearchRequest searchReuqest) throws SearchException {
-        ClientResponse<String> searchResponse = resourceProxy.advancedSearch(authTicket, searchReuqest);
+    public List<ContentNode> search(SearchRequest searchReuqest) throws SearchException {
+        ClientResponse<List<ContentNode>> searchResponse = resourceProxy.advancedSearch(authTicket, searchReuqest);
         return parseEntityFromResponse(searchResponse, SearchException.class);
     }
 
