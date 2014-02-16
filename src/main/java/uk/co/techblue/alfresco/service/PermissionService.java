@@ -19,10 +19,10 @@ import org.jboss.resteasy.client.ClientResponse;
 
 import uk.co.techblue.alfresco.commons.AlfrescoConstants;
 import uk.co.techblue.alfresco.dto.content.PermissionRequest;
+import uk.co.techblue.alfresco.dto.content.PermissionServiceResponse;
 import uk.co.techblue.alfresco.exception.PermissionException;
 import uk.co.techblue.alfresco.resource.PermissionResource;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PermissionService.
  */
@@ -75,6 +75,18 @@ public class PermissionService extends AbstractService<PermissionResource> {
     public String setPermissons(final String nodeId, final PermissionRequest permissionRequest) throws PermissionException {
         final ClientResponse<String> contentResponse = resourceProxy.setPermissions(authTicket, AlfrescoConstants.DEFAULT_STORE_TYPE,
             AlfrescoConstants.DEFAULT_STORE_ID, nodeId, permissionRequest);
+        return parseEntityFromResponse(contentResponse, PermissionException.class);
+    }
+
+    /**
+     * Sets the permissions.
+     * 
+     * @param folderName the folder name
+     * @return the string
+     * @throws PermissionException the permission exception
+     */
+    public PermissionServiceResponse setPermissions(final String nodeId, final String authorityType, final String userGroupType) throws PermissionException {
+        final ClientResponse<PermissionServiceResponse> contentResponse = resourceProxy.setPermissions(authTicket, nodeId, authorityType, userGroupType);
         return parseEntityFromResponse(contentResponse, PermissionException.class);
     }
 

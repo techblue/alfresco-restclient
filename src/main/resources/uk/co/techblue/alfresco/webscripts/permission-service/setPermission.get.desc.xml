@@ -1,0 +1,7 @@
+<webscript>
+    <shortname>Set Permission</shortname>
+    <description>Set Permission using javascript API</description>
+    <url>/api/set/folder/permission?nodeId={nodeId}&amp;authorityType={authorityType}&amp;userGroupType={userGroupType}</url>
+    <format default="json"/>
+    <authentication>admin</authentication>
+</webscript>

@@ -16,6 +16,7 @@
 package uk.co.techblue.alfresco.resource;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -28,11 +29,13 @@ import org.jboss.resteasy.client.ClientResponse;
 import uk.co.techblue.alfresco.client.Resource;
 import uk.co.techblue.alfresco.commons.AlfrescoConstants;
 import uk.co.techblue.alfresco.dto.content.PermissionRequest;
+import uk.co.techblue.alfresco.dto.content.PermissionServiceResponse;
 
 /**
  * The Interface PermissionResource.
  */
-@Path("/alfresco/service/slingshot/doclib/")
+// @Path("/alfresco/service/slingshot/doclib/")
+@Path(AlfrescoConstants.RESOURCE_CONTEXT_BASE_PATH)
 public interface PermissionResource extends Resource {
 
     /**
@@ -52,5 +55,20 @@ public interface PermissionResource extends Resource {
     ClientResponse<String> setPermissions(@QueryParam(AlfrescoConstants.AUTH_TICKET_PARAM_NAME) String ticket,
         @PathParam("storeType") String storeType, @PathParam("storeId") String storeId, @PathParam("nodeId") String nodeId,
         PermissionRequest permissionRequest);
+
+    @GET
+    @Path("/alfresco/service/permissions/{store_type}/{store_id}/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    ClientResponse<String> readPermissions(@QueryParam(AlfrescoConstants.AUTH_TICKET_PARAM_NAME) String ticket,
+        @PathParam("store_type") String storeType, @PathParam("store_id") String storeId, @PathParam("id") String nodeId);
+
+    @GET
+    @Path("/set/folder/permission")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    ClientResponse<PermissionServiceResponse> setPermissions(@QueryParam(AlfrescoConstants.AUTH_TICKET_PARAM_NAME) String ticket, @QueryParam("nodeId") String nodeId,
+        @QueryParam("authorityType") final String authorityType,
+        @QueryParam("userGroupType") final String userGroupType);
 
 }
