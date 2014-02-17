@@ -65,15 +65,9 @@ public abstract class Service<RT extends Resource> {
     }
 
     private static void registerResteasyProvider(final ResteasyProviderFactory providerFactory, final Class<?> providerClass) {
-        final boolean registered = providerFactory.getProvider(providerClass) != null;
-        if (!registered) {
-            logger.info("Registering custom Provider with Resteasy:" + providerClass.getName() + " ...");
-            providerFactory.registerProvider(providerClass);
-            logger.info("Registered custom Provider with Resteasy:" + providerClass.getName());
-        } else {
-            logger.info("Provider is already registered with Resteasy. Ignoring registration request:"
-                + providerClass.getName());
-        }
+        logger.info("Registering custom Provider with Resteasy:" + providerClass.getName() + " ...");
+        providerFactory.registerProvider(providerClass);
+        logger.info("Registered custom Provider with Resteasy:" + providerClass.getName());
     }
 
     /**
