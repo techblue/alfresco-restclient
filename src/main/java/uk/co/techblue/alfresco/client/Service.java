@@ -23,9 +23,14 @@ import org.jboss.resteasy.client.ClientResponse;
 import org.jboss.resteasy.client.ClientResponseFailure;
 import org.jboss.resteasy.client.ProxyFactory;
 import org.jboss.resteasy.logging.Logger;
+import org.jboss.resteasy.plugins.providers.RegisterBuiltin;
+import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
 import uk.co.techblue.alfresco.dto.error.ServiceResponse;
 import uk.co.techblue.alfresco.exception.AlfrescoServiceException;
+import uk.co.techblue.alfresco.resteasy.providers.DocumentContentProvider;
+import uk.co.techblue.alfresco.resteasy.providers.HtmlBodyReader;
+import uk.co.techblue.alfresco.resteasy.providers.MultipartFormAnnotationWriter;
 
 /**
  * The Class Service.
@@ -35,13 +40,41 @@ import uk.co.techblue.alfresco.exception.AlfrescoServiceException;
 public abstract class Service<RT extends Resource> {
 
     /** The logger. */
-    private final Logger logger = Logger.getLogger(getClass());
+    private static final Logger logger = Logger.getLogger(Service.class);
 
     /** The rest base uri. */
     protected final String restBaseUri;
 
     /** The resource proxy. */
     protected final RT resourceProxy;
+
+    static {
+        initializeProviderFactory();
+    }
+
+    private static void initializeProviderFactory() {
+        try {
+            final ResteasyProviderFactory providerFactory = ResteasyProviderFactory.getInstance();
+            registerResteasyProvider(providerFactory, DocumentContentProvider.class);
+            registerResteasyProvider(providerFactory, HtmlBodyReader.class);
+            registerResteasyProvider(providerFactory, MultipartFormAnnotationWriter.class);
+            RegisterBuiltin.register(providerFactory);
+        } catch (final Exception e) {
+            logger.error("Error occurred while registering custom resteasy providers", e);
+        }
+    }
+
+    private static void registerResteasyProvider(final ResteasyProviderFactory providerFactory, final Class<?> providerClass) {
+        final boolean registered = providerFactory.getProvider(providerClass) != null;
+        if (!registered) {
+            logger.info("Registering custom Provider with Resteasy:" + providerClass.getName() + " ...");
+            providerFactory.registerProvider(providerClass);
+            logger.info("Registered custom Provider with Resteasy:" + providerClass.getName());
+        } else {
+            logger.info("Provider is already registered with Resteasy. Ignoring registration request:"
+                + providerClass.getName());
+        }
+    }
 
     /**
      * Instantiates a new service.
