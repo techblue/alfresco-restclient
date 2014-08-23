@@ -26,7 +26,7 @@ import org.codehaus.jackson.map.JsonDeserializer;
 import org.codehaus.jackson.type.TypeReference;
 
 /**
- * The Class StringEscapeDeserializer.
+ * The Class UnquoteCharacterEscapeDeserializer.
  * 
  */
 public class UnquoteCharacterEscapeDeserializer extends JsonDeserializer<Map<String, String>> {
