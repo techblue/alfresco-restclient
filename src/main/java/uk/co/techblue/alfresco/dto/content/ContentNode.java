@@ -18,8 +18,10 @@ package uk.co.techblue.alfresco.dto.content;
 import java.util.Map;
 
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
 
 import uk.co.techblue.alfresco.dto.BaseDto;
+import uk.co.techblue.alfresco.jackson.UnquoteCharacterEscapeDeserializer;
 
 /**
  * The Class ContentNode.
@@ -95,6 +97,7 @@ public class ContentNode extends BaseDto {
 
     /** The metadata. */
     @JsonProperty("metadata")
+    @JsonDeserialize(using = UnquoteCharacterEscapeDeserializer.class)
     private Map<String, String> metadata;
 
     /**
@@ -392,7 +395,7 @@ public class ContentNode extends BaseDto {
      * @return the property
      */
     public String getProperty(final String name) {
-        if (this.metadata != null) {
+        if (metadata != null) {
             return metadata.get(name);
         }
         return null;

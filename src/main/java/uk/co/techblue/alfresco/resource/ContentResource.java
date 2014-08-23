@@ -122,7 +122,7 @@ public interface ContentResource extends Resource {
 
     /**
      * Delete document.
-     *
+     * 
      * @param ticket the ticket
      * @param storeType the store type
      * @param storeId the store id
@@ -134,7 +134,9 @@ public interface ContentResource extends Resource {
     @Path("node/{storeType}/{storeId}/{nodeId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    ClientResponse<String> deleteDocument(@QueryParam(AlfrescoConstants.AUTH_TICKET_PARAM_NAME) String ticket,
-        @PathParam("storeType") String storeType, @PathParam("storeId") String storeId, @PathParam("nodeId") String nodeId, @QueryParam("includeChildren") boolean includeChildNodes);
+    ClientResponse<String>
+        deleteDocument(@QueryParam(AlfrescoConstants.AUTH_TICKET_PARAM_NAME) String ticket,
+            @PathParam("storeType") String storeType, @PathParam("storeId") String storeId, @PathParam("nodeId") String nodeId,
+            @QueryParam("includeChildren") boolean includeChildNodes);
 
 }
