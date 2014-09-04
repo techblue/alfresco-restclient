@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>uk.co.techblue</groupId>
     <artifactId>alfresco-restclient</artifactId>
-    <version>1.1</version>
+    <version>1.2</version>
 
     <name>alfresco RESTful client</name>
     <packaging>jar</packaging>
