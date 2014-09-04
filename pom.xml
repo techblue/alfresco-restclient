@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>uk.co.techblue</groupId>
     <artifactId>alfresco-restclient</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
 
     <name>alfresco RESTful client</name>
     <packaging>jar</packaging>
@@ -22,6 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <resteasy.version>2.3.6.Final</resteasy.version>
         <jackson.version>1.9.9</jackson.version>
+        <barbon.maven.repo.baseurl>http://repository.barbondev.co.uk/nexus/content/repositories</barbon.maven.repo.baseurl>
     </properties>
 
     <licenses>
@@ -34,10 +35,15 @@
 
     <distributionManagement>
         <repository>
-            <id>techblue-snapshot</id>
-            <name>techblue-snapshot-repository</name>
-            <url>${techblue.maven.repo.baseurl}/snapshots</url>
+            <id>barbon-nexus-release</id>
+            <name>barbon-release-repository</name>
+            <url>${barbon.maven.repo.baseurl}/releases</url>
         </repository>
+        <snapshotRepository>
+            <id>barbon-nexus-snapshot</id>
+            <name>barbon-snapshot-repository</name>
+            <url>${barbon.maven.repo.baseurl}/snapshots</url>
+        </snapshotRepository>
     </distributionManagement>
 
     <dependencies>
