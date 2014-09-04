@@ -19,14 +19,9 @@ import java.lang.reflect.InvocationTargetException;
 
 import javax.ws.rs.core.Response.Status.Family;
 
-import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.HttpConnectionParams;
-import org.jboss.resteasy.client.ClientExecutor;
 import org.jboss.resteasy.client.ClientResponse;
 import org.jboss.resteasy.client.ClientResponseFailure;
 import org.jboss.resteasy.client.ProxyFactory;
-import org.jboss.resteasy.client.core.executors.ApacheHttpClient4Executor;
 import org.jboss.resteasy.logging.Logger;
 import org.jboss.resteasy.plugins.providers.RegisterBuiltin;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
@@ -116,12 +111,7 @@ public abstract class Service<RT extends Resource> {
     private final <T> T getClientService(final Class<T> clazz,
         final String serverUri) {
         logger.info("Generating REST resource proxy for: " + clazz.getName());
-        final int connectionTimeoutInMilliseconds = 10 * 1000;
-        final HttpClient httpClient = new DefaultHttpClient();
-        HttpConnectionParams.setConnectionTimeout(httpClient.getParams(), connectionTimeoutInMilliseconds);
-        HttpConnectionParams.setSoTimeout(httpClient.getParams(), connectionTimeoutInMilliseconds);
-        final ClientExecutor clientExecutor = new ApacheHttpClient4Executor(httpClient);
-        return ProxyFactory.create(clazz, serverUri, clientExecutor);
+        return ProxyFactory.create(clazz, serverUri);
     }
 
     /**
