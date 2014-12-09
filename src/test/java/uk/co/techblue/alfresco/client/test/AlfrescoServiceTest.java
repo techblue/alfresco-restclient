@@ -73,11 +73,11 @@ public class AlfrescoServiceTest {
         final ContentService contentService = new ContentService(BASE_URL,
             AUTH_TICKET);
         // EVERYTHING EXCEPT FOR PROPCO CONTENT MODEL
-        // SearchRequest searchReuqest = new SearchRequest("@cm\\:lastName:\"Arora\"");
+         SearchRequest searchReuqest = new SearchRequest("@cm\\:author:\"SavedbyWindowsInternetExplorer8\"");
         // FOR PROPCO CONTENT MODEL
         // SearchRequest searchReuqest = new SearchRequest("cm:lastName=\"Jain\"");
         // final SearchRequest searchReuqest = new SearchRequest("+PATH:\"//cm:QA//*\" +@cm\\:lastName:\"Jain\"");
-        final SearchRequest searchReuqest = new SearchRequest("@barbon\\:application-id:44284");
+//        final SearchRequest searchReuqest = new SearchRequest("@techblue\\:application-id:44284");
         // final PagingConfig pagingConfig = new PagingConfig();
         // pagingConfig.setMaxItems(2);
         // pagingConfig.setSkipCount(5);
