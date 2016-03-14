@@ -19,9 +19,14 @@ import java.lang.reflect.InvocationTargetException;
 
 import javax.ws.rs.core.Response.Status.Family;
 
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.CoreConnectionPNames;
+import org.jboss.resteasy.client.ClientExecutor;
 import org.jboss.resteasy.client.ClientResponse;
 import org.jboss.resteasy.client.ClientResponseFailure;
 import org.jboss.resteasy.client.ProxyFactory;
+import org.jboss.resteasy.client.core.executors.ApacheHttpClient4Executor;
 import org.jboss.resteasy.logging.Logger;
 import org.jboss.resteasy.plugins.providers.RegisterBuiltin;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
@@ -47,6 +52,10 @@ public abstract class Service<RT extends Resource> {
 
     /** The resource proxy. */
     protected final RT resourceProxy;
+    
+    private static final int HTTP_SOCKET_TIMEOUT = 100 * 1000; // Read timeout set to 100 Seconds
+    
+    private static final int HTTP_CONNECTION_TIMEOUT = 10 * 1000; //Connection timeout set to 10 seconds
 
     static {
         initializeProviderFactory();
@@ -110,8 +119,13 @@ public abstract class Service<RT extends Resource> {
      */
     private final <T> T getClientService(final Class<T> clazz,
         final String serverUri) {
-        logger.info("Generating REST resource proxy for: " + clazz.getName());
-        return ProxyFactory.create(clazz, serverUri);
+        logger.info("Generating REST resource proxy for: " + clazz.getName() + " with socket timeout as: ");
+        final HttpClient httpClient = new DefaultHttpClient();
+        httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, HTTP_SOCKET_TIMEOUT);
+        httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, HTTP_CONNECTION_TIMEOUT);
+        final ClientExecutor clientExecutor = new ApacheHttpClient4Executor(httpClient);
+        
+        return ProxyFactory.create(clazz, serverUri, clientExecutor);
     }
 
     /**
