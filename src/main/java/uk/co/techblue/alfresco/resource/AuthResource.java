@@ -17,6 +17,7 @@ package uk.co.techblue.alfresco.resource;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -64,6 +65,17 @@ public interface AuthResource extends Resource {
     ClientResponse<ServiceResponse> logout(
         @PathParam("ticket") String ticket,
         @QueryParam(AlfrescoConstants.AUTH_TICKET_PARAM_NAME) String authTicket,
+        @QueryParam("format") String responseFormat);
+
+    /**
+     * Validate ticket.
+     *
+     * @param ticket the ticket
+     * @return the client response
+     */
+    @GET
+    @Path("login/ticket/{ticket}")
+    ClientResponse<String> validateTicket(@PathParam("ticket") String ticket, @QueryParam(AlfrescoConstants.AUTH_TICKET_PARAM_NAME) String authTicket,
         @QueryParam("format") String responseFormat);
 
 }

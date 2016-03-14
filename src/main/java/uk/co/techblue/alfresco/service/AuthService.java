@@ -84,4 +84,16 @@ public class AuthService extends Service<AuthResource> {
         return parseEntityFromResponse(authResponse, AuthenticationException.class);
     }
 
+    /**
+     * Validate ticket.
+     *
+     * @param authTicket the auth ticket
+     * @return the service response
+     * @throws AuthenticationException the authentication exception
+     */
+    public String validateTicket(final String authTicket) throws AuthenticationException {
+        final ClientResponse<String> authResponse = resourceProxy.validateTicket(authTicket, authTicket, "xml");
+        return parseEntityFromResponse(authResponse, AuthenticationException.class);
+    }
+
 }
