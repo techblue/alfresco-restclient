@@ -221,7 +221,7 @@ public abstract class Service<RT extends Resource> {
      * @return the status family
      */
     private Family getStatusFamily(final ClientResponse<?> clientResponse) {
-        Family statusFamily = null;
+        Family statusFamily;
         if (clientResponse.getResponseStatus() == null) {
             final int statusCode = clientResponse.getStatus();
             statusFamily = getStatusFamily(statusCode);
