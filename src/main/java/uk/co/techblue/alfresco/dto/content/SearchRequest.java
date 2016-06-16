@@ -75,9 +75,6 @@ public class SearchRequest extends BaseDto {
      * @param query the query
      */
     public SearchRequest(final String query) {
-        /*
-         * if (StringUtils.isBlank(query)) { throw new IllegalArgumentException("Query String cannot be blank."); }
-         */
         this.query = query;
     }
 
