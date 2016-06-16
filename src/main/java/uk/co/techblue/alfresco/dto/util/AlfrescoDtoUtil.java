@@ -93,8 +93,7 @@ public class AlfrescoDtoUtil {
      * @throws IllegalArgumentException the illegal argument exception
      * @throws IllegalAccessException the illegal access exception
      */
-    public static Object getClassFieldValue(final Object object, final String fieldName) throws IllegalArgumentException,
-        IllegalAccessException {
+    public static Object getClassFieldValue(final Object object, final String fieldName) throws IllegalAccessException {
         for (final Field classField : object.getClass().getDeclaredFields()) {
             if (classField.getName().equals(fieldName)) {
                 classField.setAccessible(true);
