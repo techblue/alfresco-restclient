@@ -21,9 +21,9 @@ import uk.co.techblue.alfresco.client.Service;
 /**
  * The Class AbstractService.
  * 
- * @param <RT> the generic type
+ * @param <R> the generic type
  */
-public abstract class AbstractService<RT extends Resource> extends Service<RT> {
+public abstract class AbstractService<R extends Resource> extends Service<R> {
 
     /** The auth ticket. */
     protected final String authTicket;
