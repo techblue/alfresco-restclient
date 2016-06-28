@@ -61,6 +61,16 @@ public abstract class Service<RT extends Resource> {
         initializeProviderFactory();
     }
 
+    /**
+     * Instantiates a new service.
+     * 
+     * @param restBaseUri the rest base uri
+     */
+    public Service(final String restBaseUri) {
+        this.restBaseUri = restBaseUri;
+        this.resourceProxy = getResourceProxy(getResourceClass(), restBaseUri);
+    }
+
     private static void initializeProviderFactory() {
         try {
             final ResteasyProviderFactory providerFactory = ResteasyProviderFactory.getInstance();
@@ -77,16 +87,6 @@ public abstract class Service<RT extends Resource> {
         logger.info("Registering custom Provider with Resteasy:" + providerClass.getName() + " ...");
         providerFactory.registerProvider(providerClass);
         logger.info("Registered custom Provider with Resteasy:" + providerClass.getName());
-    }
-
-    /**
-     * Instantiates a new service.
-     * 
-     * @param restBaseUri the rest base uri
-     */
-    public Service(final String restBaseUri) {
-        this.restBaseUri = restBaseUri;
-        this.resourceProxy = getResourceProxy(getResourceClass(), restBaseUri);
     }
 
     /**
@@ -167,7 +167,6 @@ public abstract class Service<RT extends Resource> {
             Object errorResponse = null;
             Exception cause = null;
             try {
-                // String error = clientResponse.getEntity(String.class);
                 errorResponse = clientResponse.getEntity(ServiceResponse.class);
                 if (errorResponse == null) {
                     errorResponse = clientResponse.getEntity(String.class);

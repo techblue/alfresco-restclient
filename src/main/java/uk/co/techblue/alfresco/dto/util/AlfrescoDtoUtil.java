@@ -30,6 +30,8 @@ public class AlfrescoDtoUtil {
     /** The Constant ISO8601_PATTERN. */
     private static final String ISO8601_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSz";
 
+    private AlfrescoDtoUtil() {}
+
     /**
      * Parses the ISO8601 date string.
      * 
