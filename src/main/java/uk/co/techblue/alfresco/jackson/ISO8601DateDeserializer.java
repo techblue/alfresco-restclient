@@ -21,7 +21,6 @@ import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
 import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.DeserializationContext;
 import org.codehaus.jackson.map.JsonDeserializer;
 
@@ -39,8 +38,7 @@ public class ISO8601DateDeserializer extends JsonDeserializer<Date> {
      */
     @Override
     public Date deserialize(final JsonParser jsonparser,
-        final DeserializationContext deserializationcontext) throws IOException,
-        JsonProcessingException {
+        final DeserializationContext deserializationcontext) throws IOException {
         final Timestamp timestamp = jsonparser.readValueAs(Timestamp.class);
         if (timestamp == null || StringUtils.isBlank(timestamp.getIso8601())) {
             return null;
