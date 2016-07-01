@@ -55,7 +55,7 @@ public class HtmlBodyReader implements MessageBodyReader<String> {
     public String readFrom(final Class<String> type, final Type genericType,
         final Annotation[] annotations, final MediaType mediaType,
         final MultivaluedMap<String, String> httpHeaders, final InputStream entityStream)
-        throws IOException, WebApplicationException {
+        throws IOException {
         final String response = ProviderHelper.readString(entityStream, mediaType);
         return response;
     }

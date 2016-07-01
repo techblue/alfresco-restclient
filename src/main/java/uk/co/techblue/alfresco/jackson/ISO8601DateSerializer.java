@@ -38,8 +38,7 @@ public class ISO8601DateSerializer extends JsonSerializer<Date> {
      */
     @Override
     public void serialize(final Date value, final JsonGenerator jgen,
-        final SerializerProvider provider) throws IOException,
-        JsonProcessingException {
+        final SerializerProvider provider) throws IOException {
         try {
             final String dateString = AlfrescoDtoUtil.formatISO8601Date(value);
             jgen.writeString(dateString);

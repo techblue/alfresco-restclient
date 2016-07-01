@@ -39,8 +39,7 @@ public class ISO8601DateDeserializer extends JsonDeserializer<Date> {
      */
     @Override
     public Date deserialize(final JsonParser jsonparser,
-        final DeserializationContext deserializationcontext) throws IOException,
-        JsonProcessingException {
+        final DeserializationContext deserializationcontext) throws IOException {
         final Timestamp timestamp = jsonparser.readValueAs(Timestamp.class);
         if (timestamp == null || StringUtils.isBlank(timestamp.getIso8601())) {
             return null;
