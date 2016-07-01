@@ -21,11 +21,11 @@ package uk.co.techblue.alfresco.dto.common;
 public enum GroupSorter {
 	
 	/** The authority name. */
-	authorityName,
+	AUTHORITY_NAME,
 	
 	/** The short name. */
-	shortName,
+	SHORT_NAME,
 	
 	/** The display name. */
-	displayName
+	DISPLAY_NAME
 }
