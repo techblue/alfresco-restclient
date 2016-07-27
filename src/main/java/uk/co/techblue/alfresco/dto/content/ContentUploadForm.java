@@ -90,7 +90,7 @@ public class ContentUploadForm implements Serializable {
     /** The file data. */
     @FormParam("filedata")
     @PartType(MediaType.APPLICATION_OCTET_STREAM)
-    private FileDataSource fileData;
+    private transient FileDataSource fileData;
 
     /**
      * Gets the file name.
