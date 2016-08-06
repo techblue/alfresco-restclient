@@ -33,7 +33,7 @@ import uk.co.techblue.alfresco.dto.content.FolderRequest;
 
 /**
  * FolderResource.java
- * 
+ *
  * @author <a href="mailto:dishant.anand@techblue.co.uk">Dishant Anand</a>
  */
 @Path(AlfrescoConstants.RESOURCE_CONTEXT_BASE_PATH)
@@ -41,7 +41,7 @@ public interface FolderResource extends Resource {
 
     /**
      * Creates the folder.
-     * 
+     *
      * @param ticket the ticket
      * @param storeType the store type
      * @param storeId the store id
@@ -58,7 +58,7 @@ public interface FolderResource extends Resource {
 
     /**
      * Search folder.
-     * 
+     *
      * @param ticket the ticket
      * @param storeType the store type
      * @param storeId the store id
@@ -71,11 +71,11 @@ public interface FolderResource extends Resource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     ClientResponse<String> searchFolder(@QueryParam(AlfrescoConstants.AUTH_TICKET_PARAM_NAME) final String ticket,
-        @PathParam("store_type") final String storeType, @PathParam("store_id") final String storeId, @PathParam("id") String nodeId, @QueryParam("query") String query);
+        @PathParam("store_type") final String storeType, @PathParam("store_id") final String storeId, @PathParam("id") final String nodeId, @QueryParam("query") String query);
 
     /**
      * Creates the folder.
-     * 
+     *
      * @param ticket the ticket
      * @param storeType the store type
      * @param storeId the store id
@@ -92,7 +92,7 @@ public interface FolderResource extends Resource {
 
     /**
      * Creates the folder by cmis atom entry.
-     * 
+     *
      * @param ticket the ticket
      * @param storeType the store type
      * @param storeId the store id

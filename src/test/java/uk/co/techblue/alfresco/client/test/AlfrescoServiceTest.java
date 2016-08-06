@@ -25,13 +25,14 @@ import uk.co.techblue.alfresco.exception.SearchException;
 import uk.co.techblue.alfresco.exception.UserException;
 import uk.co.techblue.alfresco.service.AuthService;
 import uk.co.techblue.alfresco.service.ContentService;
+import uk.co.techblue.alfresco.service.FolderService;
 import uk.co.techblue.alfresco.service.GroupService;
 import uk.co.techblue.alfresco.service.UserService;
 
 public class AlfrescoServiceTest {
 
-	private static final String BASE_URL = "http://localhost:8080";
-	private static final String AUTH_TICKET = "TICKET_6545adf481da58bb87490df0a7b75300d74921f5";
+    private static final String BASE_URL = "http://localhost:8080";
+    private static final String AUTH_TICKET = "TICKET_6545adf481da58bb87490df0a7b75300d74921f5";
 
     public static void main(final String args[]) {
         // testLogin(getCredentials());
@@ -47,9 +48,21 @@ public class AlfrescoServiceTest {
         // testUpdateUser();
         // testGetUser();
         // testGetContent();
-        testAdvancedSearch();
+        // testAdvancedSearch();
         // testUploadContent();
         // testStoreMetadata();
+        testSearchFolder();
+    }
+
+    private static void testSearchFolder() {
+        final FolderService folderService = new FolderService(BASE_URL, AUTH_TICKET);
+        try {
+            System.out.println(
+                folderService.searchFolder("4f1a8cdb-e8e9-4987-bdf4-3e76fe2655d9", "cmis:name IN ('foo', 'bar')"));
+        } catch (final ContentException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     private static void testStoreMetadata() {

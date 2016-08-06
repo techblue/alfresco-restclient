@@ -23,12 +23,11 @@ import uk.co.techblue.alfresco.dto.content.FolderRequest;
 import uk.co.techblue.alfresco.exception.ContentException;
 import uk.co.techblue.alfresco.resource.FolderResource;
 
-
 public class FolderService extends AbstractService<FolderResource> {
 
     /**
      * Instantiates a new folder service.
-     * 
+     *
      * @param restBaseUri the rest base uri
      * @param authTicket the auth ticket
      */
@@ -46,7 +45,7 @@ public class FolderService extends AbstractService<FolderResource> {
 
     /**
      * this method only creates a folder,for which you need to add your custom web scripts to alfresco.
-     * 
+     *
      * @param nodeId the node id
      * @param folderName the folder name
      * @return the string
@@ -60,7 +59,7 @@ public class FolderService extends AbstractService<FolderResource> {
 
     /**
      * this method accepts a json input where you can specify whether you want to create a folder or a new file.
-     * 
+     *
      * @param nodeId the node id
      * @param folderCreationRequest the folder creation request
      * @return the string
@@ -74,7 +73,7 @@ public class FolderService extends AbstractService<FolderResource> {
 
     /**
      * this method is now deprecated in the alfresco.. =>it accepts cmis atom entry as the default input for it
-     * 
+     *
      * @param nodeId the node id
      * @param fileFolderRequestXml the folder creation request
      * @return the string
@@ -86,9 +85,19 @@ public class FolderService extends AbstractService<FolderResource> {
         return parseEntityFromResponse(contentResponse, ContentException.class);
     }
 
+    /**
+     * Search folder.
+     *
+     * @param nodeId the node id
+     * @param folderSearchCmisQuery the folder search cmis query
+     * @return the string
+     * @throws ContentException the content exception
+     */
     public String searchFolder(final String nodeId, final String folderSearchCmisQuery) throws ContentException {
+        String cmisQuery = "SELECT cmis:name, cmis:objectId FROM cmis:folder WHERE cmis:parentId='" + nodeId + "' AND ";
+        cmisQuery += folderSearchCmisQuery;
         final ClientResponse<String> contentResponse = resourceProxy.searchFolder(authTicket,
-            AlfrescoConstants.DEFAULT_STORE_TYPE, AlfrescoConstants.DEFAULT_STORE_ID, nodeId, folderSearchCmisQuery);
+            AlfrescoConstants.DEFAULT_STORE_TYPE, AlfrescoConstants.DEFAULT_STORE_ID, nodeId, cmisQuery);
         return parseEntityFromResponse(contentResponse, ContentException.class);
     }
 }

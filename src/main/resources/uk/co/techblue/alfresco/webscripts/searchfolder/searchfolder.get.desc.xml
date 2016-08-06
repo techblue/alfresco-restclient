@@ -1,0 +1,17 @@
+<webscript>
+<shortname>Search</shortname>
+<description>
+<![CDATA[
+Executes a CMIS query statement against the contents of the Repository.
+]]>
+</description>
+<url>/api/search/folder/workspace/SpaceStore/{nodeId}?query={query}</url>
+<args>
+<arg>
+<shortname>query</shortname>
+<description>query statement to execute</description>
+</arg>
+</args>
+<format default="json">argument</format>
+<authentication>user</authentication>
+</webscript>
