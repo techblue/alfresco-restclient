@@ -24,7 +24,7 @@ import uk.co.techblue.alfresco.dto.BaseDto;
 /**
  * The Class AddUser.
  */
-public class AddUser extends BaseDto {
+public class AddUser extends BaseUser {
 
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = -6927986043823113155L;
@@ -36,18 +36,6 @@ public class AddUser extends BaseDto {
     /** The password. */
     @JsonProperty("password")
     private String password;
-
-    /** The first name. */
-    @JsonProperty("firstName")
-    private String firstName;
-
-    /** The last name. */
-    @JsonProperty("lastName")
-    private String lastName;
-
-    /** The jobtitle. */
-    @JsonProperty("jobtitle")
-    private String jobtitle;
 
     /** The email. */
     @JsonProperty("email")
@@ -95,60 +83,6 @@ public class AddUser extends BaseDto {
      */
     public void setPassword(final String password) {
         this.password = password;
-    }
-
-    /**
-     * Gets the first name.
-     * 
-     * @return the first name
-     */
-    public String getFirstName() {
-        return firstName;
-    }
-
-    /**
-     * Sets the first name.
-     * 
-     * @param firstName the new first name
-     */
-    public void setFirstName(final String firstName) {
-        this.firstName = firstName;
-    }
-
-    /**
-     * Gets the last name.
-     * 
-     * @return the last name
-     */
-    public String getLastName() {
-        return lastName;
-    }
-
-    /**
-     * Sets the last name.
-     * 
-     * @param lastName the new last name
-     */
-    public void setLastName(final String lastName) {
-        this.lastName = lastName;
-    }
-
-    /**
-     * Gets the jobtitle.
-     * 
-     * @return the jobtitle
-     */
-    public String getJobtitle() {
-        return jobtitle;
-    }
-
-    /**
-     * Sets the jobtitle.
-     * 
-     * @param jobtitle the new jobtitle
-     */
-    public void setJobtitle(final String jobtitle) {
-        this.jobtitle = jobtitle;
     }
 
     /**

@@ -18,20 +18,20 @@ package uk.co.techblue.alfresco.commons;
 /**
  * The Interface AlfrescoConstants.
  */
-public interface AlfrescoConstants {
+public class AlfrescoConstants {
 
     /** The resource context base path. */
-    String RESOURCE_CONTEXT_BASE_PATH = "/alfresco/service/api/";
+    public static final String RESOURCE_CONTEXT_BASE_PATH = "/alfresco/service/api/";
 
     /** The auth ticket param name. */
-    String AUTH_TICKET_PARAM_NAME = "alf_ticket";
+    public static final String AUTH_TICKET_PARAM_NAME = "alf_ticket";
 
     /** The default store type. */
-    String DEFAULT_STORE_TYPE = "workspace";
+    public static final String DEFAULT_STORE_TYPE = "workspace";
 
     /** The default store id. */
-    String DEFAULT_STORE_ID = "SpacesStore";
+    public static final String DEFAULT_STORE_ID = "SpacesStore";
 
     /** The default store. */
-    String DEFAULT_STORE = DEFAULT_STORE_TYPE + "://" + DEFAULT_STORE_ID;
+    public static final String DEFAULT_STORE = DEFAULT_STORE_TYPE + "://" + DEFAULT_STORE_ID;
 }

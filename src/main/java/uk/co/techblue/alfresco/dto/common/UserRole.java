@@ -21,17 +21,17 @@ package uk.co.techblue.alfresco.dto.common;
 public enum UserRole {
     
     /** The Owner. */
-    Owner, 
+    OWNER, 
  /** The Coordinator. */
- Coordinator, 
+ COORDINATOR, 
  /** The Collaborator. */
- Collaborator, 
+ COLLABORATOR, 
  /** The Contributor. */
- Contributor, 
+ CONTRIBUTOR, 
  /** The Editor. */
- Editor, 
+ EDITOR, 
  /** The Consumer. */
- Consumer, 
+ CONSUMER, 
  /** The All. */
- All
+ ALL
 }

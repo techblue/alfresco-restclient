@@ -30,6 +30,8 @@ public class AlfrescoDtoUtil {
     /** The Constant ISO8601_PATTERN. */
     private static final String ISO8601_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSz";
 
+    private AlfrescoDtoUtil() {}
+
     /**
      * Parses the ISO8601 date string.
      * 
@@ -93,8 +95,7 @@ public class AlfrescoDtoUtil {
      * @throws IllegalArgumentException the illegal argument exception
      * @throws IllegalAccessException the illegal access exception
      */
-    public static Object getClassFieldValue(final Object object, final String fieldName) throws IllegalArgumentException,
-        IllegalAccessException {
+    public static Object getClassFieldValue(final Object object, final String fieldName) throws IllegalAccessException {
         for (final Field classField : object.getClass().getDeclaredFields()) {
             if (classField.getName().equals(fieldName)) {
                 classField.setAccessible(true);

@@ -164,9 +164,6 @@ public class DocumentContentProvider implements MessageBodyReader<DocumentConten
      */
     private void setDocumentAttributes(final ContentDisposition contentDisposition,
         final DocumentContent DocumentContent) {
-        // DocumentContent.setDocumentId(contentDisposition
-        // .getParameter(PARAM_DOCUMENT_ID));
-        // DocumentContent.setName(contentDisposition.getParameter(PARAM_FILENAME));
     }
 
     /**

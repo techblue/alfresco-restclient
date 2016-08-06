@@ -40,9 +40,9 @@ import uk.co.techblue.alfresco.resteasy.providers.MultipartFormAnnotationWriter;
 /**
  * The Class Service.
  * 
- * @param <RT> the generic type
+ * @param <R> the generic type
  */
-public abstract class Service<RT extends Resource> {
+public abstract class Service<R extends Resource> {
 
     /** The logger. */
     private static final Logger logger = Logger.getLogger(Service.class);
@@ -51,7 +51,7 @@ public abstract class Service<RT extends Resource> {
     protected final String restBaseUri;
 
     /** The resource proxy. */
-    protected final RT resourceProxy;
+    protected final R resourceProxy;
     
     private static final int HTTP_SOCKET_TIMEOUT = 100 * 1000; // Read timeout set to 100 Seconds
     
@@ -59,6 +59,16 @@ public abstract class Service<RT extends Resource> {
 
     static {
         initializeProviderFactory();
+    }
+
+    /**
+     * Instantiates a new service.
+     * 
+     * @param restBaseUri the rest base uri
+     */
+    public Service(final String restBaseUri) {
+        this.restBaseUri = restBaseUri;
+        this.resourceProxy = getResourceProxy(getResourceClass(), restBaseUri);
     }
 
     private static void initializeProviderFactory() {
@@ -80,21 +90,11 @@ public abstract class Service<RT extends Resource> {
     }
 
     /**
-     * Instantiates a new service.
-     * 
-     * @param restBaseUri the rest base uri
-     */
-    public Service(final String restBaseUri) {
-        this.restBaseUri = restBaseUri;
-        this.resourceProxy = getResourceProxy(getResourceClass(), restBaseUri);
-    }
-
-    /**
      * Gets the resource class.
      * 
      * @return the resource class
      */
-    protected abstract Class<RT> getResourceClass();
+    protected abstract Class<R> getResourceClass();
 
     /**
      * Gets the resource proxy.
@@ -132,15 +132,15 @@ public abstract class Service<RT extends Resource> {
      * Gets the entity from response.
      * 
      * @param <T> the Entity type
-     * @param <EX> the Exception type to throw if parsing fails
+     * @param <E> the Exception type to throw if parsing fails
      * @param clientResponse the client response
      * @param exceptionClazz the exception class to throw if parsing fails
      * @return the entity
-     * @throws EX a subclass of AlfrescoServiceException
+     * @throws E a subclass of AlfrescoServiceException
      */
-    protected <T, EX extends AlfrescoServiceException> T parseEntityFromResponse(
-        final ClientResponse<T> clientResponse, final Class<EX> exceptionClazz)
-        throws EX {
+    protected <T, E extends AlfrescoServiceException> T parseEntityFromResponse(
+        final ClientResponse<T> clientResponse, final Class<E> exceptionClazz)
+        throws E {
         T entity = null;
         try {
             validateResponseSuccess(clientResponse, exceptionClazz);
@@ -154,20 +154,19 @@ public abstract class Service<RT extends Resource> {
     /**
      * Validate response success.
      * 
-     * @param <EX> the generic type
+     * @param <E> the generic type
      * @param clientResponse the client response
      * @param exceptionClazz the exception clazz
-     * @throws EX the eX
+     * @throws E the e
      */
-    protected <EX extends AlfrescoServiceException> void validateResponseSuccess(
-        final ClientResponse<?> clientResponse, final Class<EX> exceptionClazz)
-        throws EX {
+    protected <E extends AlfrescoServiceException> void validateResponseSuccess(
+        final ClientResponse<?> clientResponse, final Class<E> exceptionClazz)
+        throws E {
         final Family statusFamily = getStatusFamily(clientResponse);
         if (statusFamily != Family.SUCCESSFUL) {
             Object errorResponse = null;
             Exception cause = null;
             try {
-                // String error = clientResponse.getEntity(String.class);
                 errorResponse = clientResponse.getEntity(ServiceResponse.class);
                 if (errorResponse == null) {
                     errorResponse = clientResponse.getEntity(String.class);
@@ -175,7 +174,7 @@ public abstract class Service<RT extends Resource> {
             } catch (final ClientResponseFailure clientResponseFailure) {
                 cause = clientResponseFailure;
             }
-            EX exception = null;
+            E exception = null;
             final String genericErrorMsg = "Error occurred while creating new instance of exception class of type "
                 + exceptionClazz.getCanonicalName()
                 + " to throw the following error:\n" + errorResponse;
@@ -221,7 +220,7 @@ public abstract class Service<RT extends Resource> {
      * @return the status family
      */
     private Family getStatusFamily(final ClientResponse<?> clientResponse) {
-        Family statusFamily = null;
+        Family statusFamily;
         if (clientResponse.getResponseStatus() == null) {
             final int statusCode = clientResponse.getStatus();
             statusFamily = getStatusFamily(statusCode);

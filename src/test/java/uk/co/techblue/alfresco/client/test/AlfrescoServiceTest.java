@@ -202,7 +202,7 @@ public class AlfrescoServiceTest {
         final GroupService userService = new GroupService(BASE_URL, AUTH_TICKET);
         try {
             final AuthorityQuery authorityQuery = new AuthorityQuery();
-            authorityQuery.setSortBy(GroupSorter.authorityName);
+            authorityQuery.setSortBy(GroupSorter.AUTHORITY_NAME);
             System.out.println(userService.getParentAuthorities(
                 "EMAIL_CONTRIBUTORS", authorityQuery));
         } catch (final GroupException e) {
@@ -214,7 +214,7 @@ public class AlfrescoServiceTest {
         final GroupService userService = new GroupService(BASE_URL, AUTH_TICKET);
         try {
             final AuthorityQuery authorityQuery = new AuthorityQuery();
-            authorityQuery.setSortBy(GroupSorter.authorityName);
+            authorityQuery.setSortBy(GroupSorter.AUTHORITY_NAME);
             System.out.println(userService.getChildAuthorities(
                 "ALFRESCO_ADMINISTRATORS", authorityQuery));
         } catch (final GroupException e) {
