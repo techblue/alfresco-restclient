@@ -15,7 +15,7 @@
     </parent>
     <groupId>uk.co.techblue</groupId>
     <artifactId>alfresco-restclient</artifactId>
-    <version>1.3</version>
+    <version>1.4-SNAPSHOT</version>
 
     <name>alfresco RESTful client</name>
     <packaging>jar</packaging>
