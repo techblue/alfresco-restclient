@@ -15,7 +15,7 @@
     </parent>
     <groupId>uk.co.techblue</groupId>
     <artifactId>alfresco-restclient</artifactId>
-    <version>1.2-SNAPSHOT</version>
+    <version>1.4-SNAPSHOT</version>
 
     <name>alfresco RESTful client</name>
     <packaging>jar</packaging>
@@ -24,7 +24,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <resteasy.version>2.3.6.Final</resteasy.version>
+        <resteasy.version>3.0.12.Final</resteasy.version>
         <jackson.version>1.9.9</jackson.version>
     </properties>
 
