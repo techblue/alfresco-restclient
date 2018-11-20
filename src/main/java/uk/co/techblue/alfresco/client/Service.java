@@ -19,8 +19,11 @@ import java.lang.reflect.InvocationTargetException;
 
 import javax.ws.rs.core.Response.Status.Family;
 
+import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.http.client.HttpClient;
+import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.conn.PoolingClientConnectionManager;
 import org.apache.http.params.CoreConnectionPNames;
 import org.jboss.resteasy.client.ClientExecutor;
 import org.jboss.resteasy.client.ClientResponse;
@@ -120,7 +123,13 @@ public abstract class Service<R extends Resource> {
     private final <T> T getClientService(final Class<T> clazz,
         final String serverUri) {
         logger.info("Generating REST resource proxy for: " + clazz.getName() + " with socket timeout as: ");
-        final HttpClient httpClient = new DefaultHttpClient();
+        final PoolingClientConnectionManager poolingClientConnectionManager = new PoolingClientConnectionManager();
+        final int maxTotal = NumberUtils.toInt(System.getProperty("alfcli-max-total", "20"));
+        final int defaultMaxPerRoute = NumberUtils.toInt(System.getProperty("alfcli-default-max-per-route", "2"));
+        logger.info("Pooling alfresco connection with maxTotal - {} and defaultMaxPerRoute - {}", maxTotal, defaultMaxPerRoute);
+        poolingClientConnectionManager.setMaxTotal(maxTotal);
+        poolingClientConnectionManager.setDefaultMaxPerRoute(defaultMaxPerRoute);
+        final HttpClient httpClient = new DefaultHttpClient(poolingClientConnectionManager);
         httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, HTTP_SOCKET_TIMEOUT);
         httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, HTTP_CONNECTION_TIMEOUT);
         final ClientExecutor clientExecutor = new ApacheHttpClient4Executor(httpClient);

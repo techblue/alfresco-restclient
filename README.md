@@ -9,6 +9,12 @@ Following declaration can be used to add this library as a maven dependency:
 <dependency>
     <groupId>uk.co.techblue</groupId>
     <artifactId>alfresco-restclient</artifactId>
-    <version>1.1</version>
+    <version>1.3</version>
 </dependency>
 ```
+Pooling connection parameters
+-----------------------------
+```
+System Properties
+alfcli-max-total=20
+alfcli-default-max-per-route=2
