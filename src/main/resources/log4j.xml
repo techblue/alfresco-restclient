@@ -1,44 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Copyright 2012 Technology Blueprint Ltd
-  
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-  
-    http://www.apache.org/licenses/LICENSE-2.0
-  
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
--->
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="true"
+    xmlns:log4j='http://jakarta.apache.org/log4j/'>
 
-<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
-
-    <!-- <appender name="ERROR_FILE" class="org.apache.log4j.FileAppender"> 
-        <param name="Threshold" value="ERROR" /> <param name="File" value="/home/ajay/Backup/logs/docusign_client_error.log" 
-        /> <layout class="org.apache.log4j.PatternLayout"> <param name="ConversionPattern" 
-        value="%d %-5p [%c{1}] %m %n" /> </layout> </appender> -->
-
-    <appender name="GENERAL" class="org.apache.log4j.ConsoleAppender">
-        <param name="Threshold" value="INFO" />
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%d %-5p  [%c{1}] %m %n" />
+        <param name="ConversionPattern" 
+          value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
         </layout>
     </appender>
-    
-    <logger name="org.apache.http" additivity="false">
-        <level value="DEBUG" />
-        <!-- <appender-ref ref="ERROR_FILE" /> -->
-        <appender-ref ref="GENERAL" />
-    </logger>
-    <logger name="uk.co" additivity="false">
-        <level value="TRACE" />
-        <!-- <appender-ref ref="ERROR_FILE" /> -->
-        <appender-ref ref="GENERAL" />
-    </logger>
+
+    <root>
+        <level value="INFO" />
+        <appender-ref ref="console" />
+    </root>
 
 </log4j:configuration>

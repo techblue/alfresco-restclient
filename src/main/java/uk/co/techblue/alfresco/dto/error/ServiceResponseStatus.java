@@ -15,9 +15,6 @@
  ******************************************************************************/
 package uk.co.techblue.alfresco.dto.error;
 
-import org.codehaus.jackson.annotate.JsonProperty;
-
-import uk.co.techblue.alfresco.dto.BaseDto;
 import uk.co.techblue.alfresco.dto.BaseStatus;
 
 /**

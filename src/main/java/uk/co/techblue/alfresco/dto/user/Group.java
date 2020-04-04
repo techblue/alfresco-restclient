@@ -15,7 +15,7 @@
  ******************************************************************************/
 package uk.co.techblue.alfresco.dto.user;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import uk.co.techblue.alfresco.dto.BaseDto;
 import uk.co.techblue.alfresco.dto.common.AuthorityType;

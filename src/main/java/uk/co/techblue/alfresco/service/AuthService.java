@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2012 Technology Blueprint Ltd
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,7 +34,7 @@ public class AuthService extends Service<AuthResource> {
 
     /**
      * Instantiates a new auth service.
-     * 
+     *
      * @param restBaseUri the rest base uri
      * @param credentials the credentials
      */
@@ -45,7 +45,7 @@ public class AuthService extends Service<AuthResource> {
 
     /**
      * Instantiates a new auth service.
-     * 
+     *
      * @param restBaseUri the rest base uri
      */
     public AuthService(final String restBaseUri) {
@@ -63,7 +63,7 @@ public class AuthService extends Service<AuthResource> {
 
     /**
      * Login.
-     * 
+     *
      * @return the auth response
      * @throws AuthenticationException the authentication exception
      */
@@ -74,7 +74,7 @@ public class AuthService extends Service<AuthResource> {
 
     /**
      * Logout.
-     * 
+     *
      * @param authTicket the auth ticket
      * @return the service response
      * @throws AuthenticationException the authentication exception

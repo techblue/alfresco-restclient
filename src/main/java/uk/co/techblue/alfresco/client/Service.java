@@ -21,7 +21,6 @@ import javax.ws.rs.core.Response.Status.Family;
 
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.http.client.HttpClient;
-import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.PoolingClientConnectionManager;
 import org.apache.http.params.CoreConnectionPNames;
@@ -126,7 +125,7 @@ public abstract class Service<R extends Resource> {
         final PoolingClientConnectionManager poolingClientConnectionManager = new PoolingClientConnectionManager();
         final int maxTotal = NumberUtils.toInt(System.getProperty("alfcli-max-total", "20"));
         final int defaultMaxPerRoute = NumberUtils.toInt(System.getProperty("alfcli-default-max-per-route", "2"));
-        logger.info("Pooling alfresco connection with maxTotal - {} and defaultMaxPerRoute - {}", maxTotal, defaultMaxPerRoute);
+        logger.info("Pooling alfresco connection with maxTotal - "+maxTotal+" and defaultMaxPerRoute - "+defaultMaxPerRoute);
         poolingClientConnectionManager.setMaxTotal(maxTotal);
         poolingClientConnectionManager.setDefaultMaxPerRoute(defaultMaxPerRoute);
         final HttpClient httpClient = new DefaultHttpClient(poolingClientConnectionManager);

@@ -1,11 +1,13 @@
 package uk.co.techblue.alfresco.dto;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * The Class BaseStatus.
  */
 public class BaseStatus extends BaseDto {
+
+    private static final long serialVersionUID = -3347043579944070416L;
 
     /** The code. */
     @JsonProperty

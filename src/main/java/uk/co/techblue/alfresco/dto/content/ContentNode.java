@@ -17,8 +17,8 @@ package uk.co.techblue.alfresco.dto.content;
 
 import java.util.Map;
 
-import org.codehaus.jackson.annotate.JsonProperty;
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import uk.co.techblue.alfresco.dto.BaseDto;
 import uk.co.techblue.alfresco.jackson.UnquoteCharacterEscapeDeserializer;

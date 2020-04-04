@@ -20,9 +20,10 @@ import java.text.ParseException;
 import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
-import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.map.DeserializationContext;
-import org.codehaus.jackson.map.JsonDeserializer;
+
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
 
 import uk.co.techblue.alfresco.dto.Timestamp;
 import uk.co.techblue.alfresco.dto.util.AlfrescoDtoUtil;

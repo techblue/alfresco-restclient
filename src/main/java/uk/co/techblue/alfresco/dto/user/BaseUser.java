@@ -1,12 +1,15 @@
 package uk.co.techblue.alfresco.dto.user;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import uk.co.techblue.alfresco.dto.BaseDto;
 
 /**
  * The Class BaseUser.
  */
 public class BaseUser extends BaseDto {
+
+    private static final long serialVersionUID = -430178812183015889L;
 
     /** The first name. */
     @JsonProperty("firstName")

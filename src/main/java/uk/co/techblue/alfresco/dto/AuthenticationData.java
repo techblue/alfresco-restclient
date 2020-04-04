@@ -15,7 +15,7 @@
  ******************************************************************************/
 package uk.co.techblue.alfresco.dto;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * The Class AuthenticationData.

@@ -1,6 +1,6 @@
 package uk.co.techblue.alfresco.dto.content;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import uk.co.techblue.alfresco.dto.BaseDto;
 

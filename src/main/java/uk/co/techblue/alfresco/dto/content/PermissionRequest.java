@@ -18,7 +18,7 @@ package uk.co.techblue.alfresco.dto.content;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import uk.co.techblue.alfresco.dto.BaseDto;
 
